@@ -1,0 +1,20 @@
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 8px;
+}
+
+.stars {
+  color: #f5b042;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 2px rgba(245, 176, 66, 0.3);
+}
+
+.rating-value {
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+}

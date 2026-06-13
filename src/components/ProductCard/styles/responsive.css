@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+  .product-list {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .product-card {
+    max-width: 100%;
+  }
+
+  .current-price {
+    font-size: 18px;
+  }
+
+  .product-info {
+    padding: 8px 10px 12px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
