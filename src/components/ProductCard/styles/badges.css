@@ -1,3 +1,4 @@
+/* Бейджи */
 .product-badges {
   display: flex;
   gap: 8px;
@@ -23,4 +24,14 @@
   background: linear-gradient(135deg, #d4af37 0%, #c5a028 100%);
   color: #1a1d2b;
   box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.badge.new {
+  background: linear-gradient(135deg, #51cf66 0%, #3ba55c 100%);
+  color: white;
+}
+
+.badge.hit {
+  background: linear-gradient(135deg, #ff6b6b 0%, #e55959 100%);
+  color: white;
 }

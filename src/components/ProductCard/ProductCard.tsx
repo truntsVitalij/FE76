@@ -1,4 +1,7 @@
-import "./styles/main.css";
+import "./ProductCard.css";
+import Button from "../ButtonQuickView/ButtonQuickView";
+import ButtonBasket from "../ButtonBasket/ButtonBasket";
+import Badge from "../Badge/Badge";
 
 type Product = {
   id: number;
@@ -48,9 +51,9 @@ function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
     <div className="product-card">
       <div className="product-image-wrapper">
         <img src={image} alt={`${brand} ${name}`} className="product-image" />
-        <button className="quick-view-btn" onClick={handleQuickView}>
+        <Button className="quick-view-btn" onClick={handleQuickView}>
           Быстрый просмотр
-        </button>
+        </Button>
       </div>
 
       <div className="product-info">
@@ -58,8 +61,8 @@ function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
         <div className="product-name">{name}</div>
 
         <div className="product-badges">
-          {discount && <span className="badge discount">-{discount}%</span>}
-          <span className="badge sale">РАСПРОДАЖА</span>
+          {discount && <Badge variant="discount">-{discount}%</Badge>}
+          <Badge variant="sale">РАСПРОДАЖА</Badge>
         </div>
 
         <div className="product-prices">
@@ -69,7 +72,6 @@ function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
 
         <div className="product-details">
           <div className="detail-item">
-            <span className="detail-icon"></span>
             <span className="detail-text">{brand}</span>
           </div>
           <div className="detail-item">
@@ -88,9 +90,7 @@ function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
           </span>
         </div>
 
-        <button className="add-to-cart-btn" onClick={handleAddToCart}>
-          🛒 Добавить в корзину
-        </button>
+        <ButtonBasket onClick={handleAddToCart} />
       </div>
     </div>
   );

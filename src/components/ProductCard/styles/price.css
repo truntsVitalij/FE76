@@ -1,24 +1,18 @@
 .product-prices {
   display: flex;
   align-items: baseline;
-  gap: 12px;
-  margin: 12px 0 12px 0;
+  gap: 8px;
+  margin: 10px 0;
 }
 
 .current-price {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #1a1d2b;
-  letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #1a1d2b 0%, #2d3042 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .old-price {
-  font-size: 14px;
+  font-size: 13px;
   color: #b0b5c5;
   text-decoration: line-through;
-  font-weight: 500;
 }
