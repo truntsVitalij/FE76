@@ -69,7 +69,7 @@ function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
 
         <div className="product-details">
           <div className="detail-item">
-            <span className="detail-icon">✅</span>
+            <span className="detail-icon"></span>
             <span className="detail-text">{brand}</span>
           </div>
           <div className="detail-item">
