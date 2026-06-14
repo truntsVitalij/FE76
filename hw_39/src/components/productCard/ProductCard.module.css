@@ -1,0 +1,100 @@
+.productCard {
+  background: white;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.productImageWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.productCard:hover .productImageWrapper img {
+  transform: scale(1.05);
+}
+
+.likeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.likeBtn:hover {
+  transform: scale(1.1);
+}
+
+.discountBadge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #ff5252;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.productInfo {
+  padding: 12px 0 0 0;
+}
+
+.productTitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.addToCartBtn {
+  width: 100%;
+  background: #5b3b8c;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.addToCartBtn:hover {
+  background: #4a2e70;
+}
+
+@media (max-width: 768px) {
+  .productInfo {
+    padding: 8px 0 0 0;
+  }
+  
+  .productTitle {
+    font-size: 13px;
+  }
+  
+  .addToCartBtn {
+    padding: 10px 0;
+    font-size: 13px;
+  }
+  
+  .likeBtn {
+    width: 28px;
+    height: 28px;
+  }
+}

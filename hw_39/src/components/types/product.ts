@@ -10,6 +10,6 @@ export interface IProduct {
   badge: string;
 }
 
-export interface IProductCardProps {
-  product: IProduct;
-}
+// export interface IProductCardProps {
+//   product: IProduct;
+// }

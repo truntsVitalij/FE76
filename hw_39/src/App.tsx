@@ -1,6 +1,7 @@
 import React from 'react';
-import ProductCard from './components/ProductCard';
-import type { IProduct } from './components/types/product.types';
+import ProductList from './components/productList';
+// import ProductCard from './components/ProductCard';
+import type { IProduct } from './components/types/product';
 import './App.css';
 
 const App: React.FC = () => {
@@ -75,11 +76,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <div className="products-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <ProductList list={products} />
     </div>
   );
 };
