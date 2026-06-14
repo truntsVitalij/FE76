@@ -1,0 +1,42 @@
+.productRating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.starFilled {
+  color: #ffc107;
+  font-size: 14px;
+}
+
+.starHalf {
+  color: #ffc107;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 0.7em;
+}
+
+.starEmpty {
+  color: #ddd;
+  font-size: 14px;
+}
+
+.ratingValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+}
+
+.reviewsCount {
+  font-size: 13px;
+  color: #888;
+}

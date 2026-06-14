@@ -4,20 +4,7 @@
   padding: 40px 20px;
 }
 
-.products-grid {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px 20px;
-}
-
 @media (max-width: 768px) {
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px 12px;
-  }
-  
   .app {
     padding: 20px 12px;
   }
