@@ -24,3 +24,17 @@ body {
   padding: 40px;
   position: relative;
 }
+
+@media (max-width: 768px) {
+  .product-list {
+    gap: 20px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

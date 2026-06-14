@@ -1,25 +1,17 @@
 .product-info {
-  padding: 10px 12px 14px 12px;
+  padding: 12px;
 }
 
 .product-brand {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
   color: #a0a5b5;
-  position: relative;
-  display: inline-block;
+  text-transform: uppercase;
 }
 
 .product-name {
   font-size: 15px;
   font-weight: 500;
   color: #1a1d2b;
-  margin: 8px 0 8px 0;
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif;
+  margin: 8px 0;
 }
