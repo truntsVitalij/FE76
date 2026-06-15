@@ -1,4 +1,4 @@
-import "./ProductCard.css";
+import "./styles/main.css";
 import Button from "../ButtonQuickView/ButtonQuickView";
 import ButtonBasket from "../ButtonBasket/ButtonBasket";
 import Badge from "../Badge/Badge";
