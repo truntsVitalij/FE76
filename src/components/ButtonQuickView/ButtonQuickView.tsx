@@ -1,18 +1,14 @@
+import Button from "../Button/Button";
+
 type ButtonQuickViewProps = {
   onClick: (e: React.MouseEvent) => void;
-  children: React.ReactNode;
-  className?: string;
 };
 
-function ButtonQuickView({
-  onClick,
-  children,
-  className = "",
-}: ButtonQuickViewProps) {
+function ButtonQuickView({ onClick }: ButtonQuickViewProps) {
   return (
-    <button onClick={onClick} className={className}>
-      {children}
-    </button>
+    <Button onClick={onClick} className="quick-view-btn">
+      Быстрый просмотр
+    </Button>
   );
 }
 

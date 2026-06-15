@@ -1,13 +1,12 @@
-import Button from "../ButtonQuickView/ButtonQuickView";
+import Button from "../Button/Button";
 
 type ButtonBasketProps = {
   onClick: (e: React.MouseEvent) => void;
-  className?: string;
 };
 
-function ButtonBasket({ onClick, className = "" }: ButtonBasketProps) {
+function ButtonBasket({ onClick }: ButtonBasketProps) {
   return (
-    <Button onClick={onClick} className={`add-to-cart-btn ${className}`}>
+    <Button onClick={onClick} className="add-to-cart-btn">
       🛒 Добавить в корзину
     </Button>
   );
