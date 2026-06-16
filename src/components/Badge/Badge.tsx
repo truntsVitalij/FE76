@@ -1,3 +1,5 @@
+import "./Badge.css";
+
 type BadgeVariant = "discount" | "sale" | "new" | "hit";
 
 type BadgeProps = {

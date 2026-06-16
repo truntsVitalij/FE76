@@ -1,6 +1,6 @@
-import "./styles/main.css";
-import Button from "../ButtonQuickView/ButtonQuickView";
+import "./ProductCard.css";
 import ButtonBasket from "../ButtonBasket/ButtonBasket";
+import ButtonQuickView from "../ButtonQuickView/ButtonQuickView";
 import Badge from "../Badge/Badge";
 
 type Product = {
@@ -51,9 +51,7 @@ function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
     <div className="product-card">
       <div className="product-image-wrapper">
         <img src={image} alt={`${brand} ${name}`} className="product-image" />
-        <Button className="quick-view-btn" onClick={handleQuickView}>
-          Быстрый просмотр
-        </Button>
+        <ButtonQuickView onClick={handleQuickView} />
       </div>
 
       <div className="product-info">

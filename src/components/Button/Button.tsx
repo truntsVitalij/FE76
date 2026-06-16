@@ -1,3 +1,5 @@
+import "./Button.css";
+
 type ButtonProps = {
   onClick: (e: React.MouseEvent) => void;
   children: React.ReactNode;
@@ -6,7 +8,7 @@ type ButtonProps = {
 
 function Button({ onClick, children, className = "" }: ButtonProps) {
   return (
-    <button onClick={onClick} className={className}>
+    <button onClick={onClick} className={`btn ${className}`}>
       {children}
     </button>
   );
