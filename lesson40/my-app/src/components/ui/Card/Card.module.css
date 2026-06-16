@@ -1,0 +1,16 @@
+.card {
+  width: 220px;
+  height: 160px;
+  padding: 20px;
+  border: 1px solid #ad4e4e;
+
+  .title {
+    margin-bottom: 12px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
