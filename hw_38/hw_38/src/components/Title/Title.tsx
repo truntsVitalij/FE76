@@ -1,6 +1,7 @@
 import React from "react";
 
-const Title = () => {
-  return <h1>Sign In</h1>;
+const Title = ({ text }) => {
+  return <h1>{text}</h1>;
 };
+
 export default Title;
