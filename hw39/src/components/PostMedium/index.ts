@@ -1,0 +1,1 @@
+export { PostMedium } from './PostMedium';
