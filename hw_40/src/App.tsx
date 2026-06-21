@@ -1,3 +1,4 @@
+import React from 'react';
 import type { FC, PropsWithChildren } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout';
@@ -12,7 +13,7 @@ const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
 
 const GuestRoute: FC<PropsWithChildren> = ({ children }) => {
   if (localStorage.getItem('isLoggedIn')) return <Navigate to="/blog" replace />;
-  return <>{children}</>;
+
 };
 
 const App: React.FC = () => {
