@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Accordion.css';
+import styles from './Accordion.module.css';
 
 interface Props {
 	title: string;
@@ -10,16 +10,15 @@ export const Accordion = ({ title, children }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div className="accordion">
-			<div className="accordion__header" onClick={() => setIsOpen(!isOpen)}>
+		<div className={styles.accordion}>
+			<div className={styles.header} onClick={() => setIsOpen(prev => !prev)}>
 				<span>{title}</span>
-
-				<svg className={`accordion__arrow ${isOpen ? 'open' : ''}`} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+				<svg className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ''}`} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 					<polyline points="6 9 12 15 18 9"></polyline>
 				</svg>
 			</div>
 
-			{isOpen && <div className="accordion__content">{children}</div>}
+			{isOpen && <div className={styles.content}>{children}</div>}
 		</div>
 	);
 };
