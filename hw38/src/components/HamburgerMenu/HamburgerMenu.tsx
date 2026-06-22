@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import './HamburgerMenu.css';
+import styles from './HamburgerMenu.module.css';
 
 export const HamburgerMenu = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggleMenu = () => {
-		setIsOpen(!isOpen);
+		setIsOpen(prev => !prev);
 	};
 
 	return (
-		<div className="hamburger-wrapper">
-			<button className="hamburger-btn" onClick={toggleMenu}>
+		<div className={styles.hamburgerWrapper}>
+			<button className={styles.hamburgerBtn} onClick={toggleMenu}>
 				{isOpen ? (
 					/* Крестик */
 					<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">

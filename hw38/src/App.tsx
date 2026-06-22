@@ -1,15 +1,16 @@
 import './App.css';
-import { AccordionGroup } from './components/Accordion';
+import { Title } from './components/Title';
 import { HamburgerMenu } from './components/HamburgerMenu';
-import { Text } from './components/Text';
+import { List } from './components/List';
+import { ACCORDION_DATA } from './data/accordion';
 
 function App() {
 	return (
-		<>
-			<Text text="Sign In" />
+		<div className="app-container">
+			<Title>Sign In</Title>
 			<HamburgerMenu />
-			<AccordionGroup />
-		</>
+			<List list={ACCORDION_DATA} />
+		</div>
 	);
 }
 

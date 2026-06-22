@@ -1,10 +1,9 @@
-.hamburger-wrapper {
+.hamburgerWrapper {
 	display: flex;
 	justify-content: center;
-	margin-bottom: 40px;
 }
 
-.hamburger-btn {
+.hamburgerBtn {
 	display: flex;
 	justify-content: center;
 	align-items: center;

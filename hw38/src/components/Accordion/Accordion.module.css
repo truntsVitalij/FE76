@@ -1,16 +1,10 @@
-.accordion-group {
-	margin: 0 auto;
-	width: 70%;
-}
-
 .accordion {
-	margin-bottom: 10px;
 	border: 1px solid #ddd;
 	border-radius: 8px;
 	overflow: hidden;
 }
 
-.accordion__header {
+.header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -21,21 +15,21 @@
 	transition: background-color 0.3s;
 }
 
-.accordion__header:hover {
+.header:hover {
 	background-color: #f0f0f0;
 }
 
-.accordion__content {
+.content {
 	padding: 15px;
 	border-top: 1px solid #ddd;
 	background-color: white;
 	line-height: 1.5;
 }
 
-.accordion__arrow {
+.arrow {
 	transition: transform 0.3s ease-in-out;
 }
 
-.accordion__arrow.open {
+.arrowOpen {
 	transform: rotate(180deg);
 }
