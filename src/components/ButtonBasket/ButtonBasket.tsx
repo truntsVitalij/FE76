@@ -1,4 +1,4 @@
-import "./ButtonBasket.css";
+import "./ButtonBasket.module.css";
 import Button from "../Button/Button";
 
 type ButtonBasketProps = {

@@ -1,4 +1,4 @@
-import "./Badge.css";
+import "./Badge.module.css";
 
 type BadgeVariant = "discount" | "sale" | "new" | "hit";
 
