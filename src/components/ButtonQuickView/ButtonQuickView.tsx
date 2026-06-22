@@ -1,4 +1,4 @@
-import "./ButtonQuickView.css";
+import "./ButtonQuickView.module.css";
 import Button from "../Button/Button";
 
 type ButtonQuickViewProps = {

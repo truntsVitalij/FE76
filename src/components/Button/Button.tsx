@@ -1,4 +1,4 @@
-import "./Button.css";
+import "./Button.module.css";
 
 type ButtonProps = {
   onClick: (e: React.MouseEvent) => void;
