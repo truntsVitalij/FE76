@@ -57,11 +57,11 @@ function App() {
     <section id="center">
       {/* <Avatar size={'m'}>IG</Avatar> { /* new Avatar({size: 'xs', children: 'IG'}).render() */}
       {/* <Avatar size="l" alt='afssaf' src='asfsaf' />
-      <Avatar size="xs" variant='square'>DE</Avatar>
-      <Avatar variant='rounded' fullName="Виталий Владиславович" /> */}
+        <Avatar size="xs" variant='square'>DE</Avatar>
+        <Avatar variant='rounded' fullName="Виталий Владиславович" /> */}
       {/* {shouldShow && <AvatarClassComponent size={avatarSize} variant='rounded'>TN</AvatarClassComponent>}
-      <button onClick={handleClick}> click me</button>
-      <button onClick={handleShowHideClick}> show/hide</button> */}
+        <button onClick={handleClick}> click me</button>
+        <button onClick={handleShowHideClick}> show/hide</button> */}
       <Card title="Мужские духи" description='Как этот код выглядел бы в самой первой версии реакта. Через React.CreateElement' />
       <ProductCard />
     </section>
