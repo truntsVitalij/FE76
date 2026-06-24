@@ -1,0 +1,27 @@
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.badge.discount {
+  background: #e31e24;
+  color: white;
+}
+
+.badge.sale {
+  background: #d4af37;
+  color: #1a1d2b;
+}
+
+.badge.new {
+  background: #51cf66;
+  color: white;
+}
+
+.badge.hit {
+  background: #ff6b6b;
+  color: white;
+}
