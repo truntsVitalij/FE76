@@ -1,4 +1,4 @@
-import "./PostCard.css";
+import "./PostCard.module.css";
 
 type Post = {
   id: number;

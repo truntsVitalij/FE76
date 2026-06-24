@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import "./Success.css";
+import "./Success.module.css";
 
 type SuccessProps = {
   user: { name: string; email: string };

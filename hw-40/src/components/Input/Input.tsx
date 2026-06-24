@@ -1,4 +1,4 @@
-import "./Input.css";
+import "./Input.module.css";
 
 type InputProps = {
   label: string;

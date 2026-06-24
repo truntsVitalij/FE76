@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import "./SignIn.css";
+import "./SignIn.module.css";
 
 type SignInProps = {
   onSignIn: (email: string, password: string) => void;

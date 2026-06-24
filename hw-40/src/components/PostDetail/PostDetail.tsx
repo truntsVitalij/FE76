@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import "./PostDetail.css";
+import "./PostDetail.module.css";
 
 type Post = {
   id: number;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PostCard from "../PostCard/PostCard";
-import "./PostList.css";
+import "./PostList.module.css";
 
 type Post = {
   id: number;
