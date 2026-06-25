@@ -1,0 +1,21 @@
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.forgotPassword {
+  display: block;
+  text-align: right;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}

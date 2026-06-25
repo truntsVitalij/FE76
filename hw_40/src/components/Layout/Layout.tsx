@@ -5,16 +5,12 @@ import type { LayoutProps } from './types';
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <>
       <header className={styles.header}>
-        <div>
-          <Menu size={24} />
-        </div>
+        <Menu size={24} />
         <div className={styles.headerActions}>
           <Search size={20} />
-          <div className={styles.userAvatar}>
-            <User size={24} strokeWidth={1.5} />
-          </div>
+          <User size={24} strokeWidth={1.5} className={styles.userAvatar} />
         </div>
       </header>
 
@@ -26,6 +22,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <span>©2022 Blogfolio</span>
         <span>All rights reserved</span>
       </footer>
-    </div>
+    </>
   );
 };
