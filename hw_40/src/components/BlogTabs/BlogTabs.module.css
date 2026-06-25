@@ -1,0 +1,17 @@
+.tabs {
+  display: flex;
+  gap: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+.tab {
+  padding-bottom: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.tabActive {
+  color: #1f2937;
+  border-bottom-color: #1f2937;
+}

@@ -1,13 +1,17 @@
-import React from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './components/Layout/Layout';
-import { Login } from './components/Login/Login';
-import { SuccessLogin } from './components/SuccessLogin/SuccessLogin';
-import { Blog } from './components/Blog/Blog';
+import { Layout } from './components/Layout';
+import { Login } from './pages/Login';
+import { SuccessLogin } from './pages/SuccessLogin';
+import { Blog } from './pages/blog';
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
-  if (!isLoggedIn) return <Navigate to="/login" replace />;
+const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
+  if (!localStorage.getItem('isLoggedIn')) return <Navigate to="/login" replace />;
+  return <>{children}</>;
+};
+
+const GuestRoute: FC<PropsWithChildren> = ({ children }) => {
+  if (localStorage.getItem('isLoggedIn')) return <Navigate to="/blog" replace />;
   return <>{children}</>;
 };
 
@@ -16,11 +20,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={
-            localStorage.getItem('isLoggedIn') 
-              ? <Navigate to="/blog" replace /> 
-              : <Navigate to="/login" replace />
-          } />
+          <Route path="/" element={<GuestRoute><Navigate to="/login" replace /></GuestRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/success" element={<SuccessLogin />} />
           <Route path="/blog" element={
