@@ -1,3 +1,9 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
   background-color: #1a237e;
   color: white;
@@ -38,11 +44,7 @@
 }
 
 .userAvatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
   color: white;
-  border: none;
 }
