@@ -1,1 +1,0 @@
-export { PostSmall } from './PostSmall';
