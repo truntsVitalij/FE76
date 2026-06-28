@@ -16,11 +16,27 @@ export const BlogGrid: FC<BlogGridProps> = ({ posts }) => {
     );
   }
 
+  const bigPost = posts[0];
+  const mediumPosts = posts.slice(3, 5);
+  const smallPosts = posts.slice(1, 3).concat(posts.slice(5));
+
   return (
     <div className={styles.grid}>
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
+      <div className={styles.bigBlock}>
+        <PostCard post={bigPost} size="l" />
+      </div>
+      
+      <div className={styles.mediumRow}>
+        {mediumPosts.map(post => (
+          <PostCard key={post.id} post={post} size="m" />
+        ))}
+      </div>
+      
+      <div className={styles.sideColumn}>
+        {smallPosts.map(post => (
+          <PostCard key={post.id} post={post} size="s" />
+        ))}
+      </div>
     </div>
   );
 };
