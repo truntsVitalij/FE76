@@ -1,10 +1,10 @@
-import { type FC, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { type FC, useState, useMemo } from 'react';
 import { BlogHeader } from '../../components/BlogHeader';
 import { BlogTabs } from '../../components/BlogTabs';
 import { BlogGrid } from '../../components/BlogGrid';
 import { BlogPagination } from '../../components/BlogPagination';
 import type { Post, TabType } from './types';
+import styles from './Blog.module.css';
 
 const ALL_POSTS: Post[] = Array.from({ length: 9 }).map((_, i) => ({
   id: i,
@@ -14,26 +14,21 @@ const ALL_POSTS: Post[] = Array.from({ length: 9 }).map((_, i) => ({
 }));
 
 export const Blog: FC = () => {
-  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<TabType>('All');
-  const [displayedPosts, setDisplayedPosts] = useState<Post[]>(ALL_POSTS);
 
-  useEffect(() => {
-    if (!localStorage.getItem('isLoggedIn')) navigate('/login');
-  }, [navigate]);
-
-  useEffect(() => {
-    if (activeTab === 'All') setDisplayedPosts(ALL_POSTS);
-    else if (activeTab === 'My favorite') setDisplayedPosts(ALL_POSTS.slice(0, 3));
-    else if (activeTab === 'Popular') setDisplayedPosts(ALL_POSTS.slice(-3));
+  const displayedPosts = useMemo(() => {
+    if (activeTab === 'All') return ALL_POSTS;
+    if (activeTab === 'My favorite') return ALL_POSTS.slice(0, 3);
+    if (activeTab === 'Popular') return ALL_POSTS.slice(-3);
+    return ALL_POSTS;
   }, [activeTab]);
 
-  return (
-    <>
-      <BlogHeader count={displayedPosts.length} />
-      <BlogTabs activeTab={activeTab} onTabChange={setActiveTab} />
-      <BlogGrid posts={displayedPosts} />
-      <BlogPagination />
-    </>
-  );
+return (
+  <div className={styles.container}>
+    <BlogHeader count={displayedPosts.length} />
+    <BlogTabs activeTab={activeTab} onTabChange={setActiveTab} />
+    <BlogGrid posts={displayedPosts} />
+    <BlogPagination />
+  </div>
+);
 };
