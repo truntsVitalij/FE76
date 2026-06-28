@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ThumbsUp, ThumbsDown, Bookmark, MoreHorizontal } from 'lucide-react';
 import styles from './PostCard.module.css';
 import type { Post } from '../../pages/blog/types';
@@ -9,8 +10,14 @@ interface PostCardProps {
 }
 
 export const PostCard: FC<PostCardProps> = ({ post, size = 'm' }) => {
+  const navigate = useNavigate();
+
   return (
-    <article className={`${styles.card} ${styles[size]}`}>
+    <article 
+      className={`${styles.card} ${styles[size]}`} 
+      onClick={() => navigate(`/post/${post.id}`)}
+      style={{ cursor: 'pointer' }}
+    >
       <div className={styles.wrapper}>
         <div className={styles.textBlock}>
           <div className={styles.meta}>{post.date}</div>

@@ -4,6 +4,8 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { SuccessLogin } from './pages/SuccessLogin';
 import { Blog } from './pages/blog';
+import { PostPage } from './pages/PostPage/PostPage';
+import { ALL_POSTS } from './data/posts';
 
 interface User {
   email: string;
@@ -20,7 +22,6 @@ function App() {
 
   const handleLogin = (email: string, password: string): boolean => {
     const user = users.find(u => u.email === email && u.password === password);
-    
     if (user || (email === 'admin@example.com' && password === '123456')) {
       setIsLoggedIn(true);
       return true;
@@ -30,28 +31,18 @@ function App() {
 
   return (
     <Routes>
-      <Route 
-        path="/register" 
-        element={<Register onRegister={handleRegister} />} 
-      />
-      <Route 
-        path="/success" 
-        element={<SuccessLogin />} 
-      />
-      <Route 
-        path="/login" 
-        element={<Login onLogin={handleLogin} />} 
-      />
+      <Route path="/register" element={<Register onRegister={handleRegister} />} />
+      <Route path="/success" element={<SuccessLogin />} />
+      <Route path="/login" element={<Login onLogin={handleLogin} />} />
       <Route 
         path="/blog" 
-        element={
-          isLoggedIn ? <Blog /> : <Navigate to="/login" replace />
-        } 
+        element={isLoggedIn ? <Blog /> : <Navigate to="/login" replace />} 
       />
       <Route 
-        path="/" 
-        element={<Navigate to="/login" replace />} 
+        path="/post/:id" 
+        element={isLoggedIn ? <PostPage posts={ALL_POSTS} /> : <Navigate to="/login" replace />} 
       />
+      <Route path="/" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }
