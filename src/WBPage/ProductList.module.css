@@ -1,0 +1,28 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.productList{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0px auto;
+    padding:10px;
+    gap: 10px;
+    background-color: rgba(250, 235, 215, 0.404);
+    color:rgb(19, 7, 124);
+}
+@media (max-width: 900px) {
+    .productList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .productList {
+        grid-template-columns: 1fr;
+    }
+}

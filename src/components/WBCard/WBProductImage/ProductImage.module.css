@@ -1,0 +1,7 @@
+.img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+}
