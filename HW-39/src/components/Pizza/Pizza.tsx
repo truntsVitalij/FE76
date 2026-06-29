@@ -1,3 +1,5 @@
+//для себя
+
 import styles from './Pizza.module.css'
 
 interface IPizzaProps {
