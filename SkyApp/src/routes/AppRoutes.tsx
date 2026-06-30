@@ -1,17 +1,20 @@
-import { Routes, Route} from "react-router-dom";
+// import { Routes, Route} from "react-router-dom";
 
-import { HomePage } from "../pages/HomePage";
-import { LoginPage } from "../pages/LoginPage";
-import { RegisterPage} from "../pages/RegisterPage";
-import { SearchPage } from "../pages/SearchPage"
+// import { HomePage } from "../pages/HomePage";
+// import LoginPage from "../pages/LoginPage SignIn";
+// import RegisterPage from "../pages/RegisterPage SignUp";
+// import { SearchPage } from "../pages/SearchPage"
 
-export const AppRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/" element = {<HomePage />} />
-            <Route path="/login" element = {<LoginPage />} />
-            <Route path="/register" element = {<RegisterPage />} /> 
-            <Route path="/search" element = {<SearchPage />} />
-        </Routes>
-    )
-}
+
+
+
+// export const AppRoutes = () => {
+//     return (
+//         <Routes>
+//             <Route path="/" element = {<HomePage />} />
+//             <Route path="/login" element = {<LoginPage />} />
+//             <Route path="/register" element = {<RegisterPage />} /> 
+//             <Route path="/search" element = {<SearchPage />} />
+//         </Routes>
+//     )
+// }
