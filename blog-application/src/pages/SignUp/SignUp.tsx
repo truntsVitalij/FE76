@@ -1,22 +1,19 @@
 import type { FC } from "react"
-import type { TAppPages } from "../../App"
+import { useNavigate } from "react-router";
 
-interface ISignUpProps {
-    onClick: (page: TAppPages) => void
-}
 
-const SignUp: FC<ISignUpProps> = ({ onClick }) => {
-
+const SignUp: FC = () => {
+    const navigate = useNavigate();
     const handleClick = () => {
-        console.log('Отмена регистрации')
+        console.log('Отмена регистрации');
+        navigate(-2);
 
-        onClick('SignIn')
     }
 
     return (
         <div>
             <h2>Пожалуйста, пройдите регистрацию</h2>
-            <button onClick={handleClick}> Вернутся назад </button>
+            <button onClick={handleClick}> Вернуться назад </button>
         </div>
     )
 }

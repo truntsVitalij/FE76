@@ -1,17 +1,24 @@
 import { useEffect, type FC } from 'react';
+import { Link, useMatch, useNavigate } from 'react-router';
+
 import styles from './SignIn.module.css';
-import type { TAppPages } from '../../App';
 
-interface ISignInProps {
-    onClick: (page: TAppPages) => void;
-    onAlreadyAuthorized: () => void;
-}
+const SignIn: FC = () => {
+    const navigate = useNavigate();
 
-const SignIn: FC<ISignInProps> = ({ onClick }) => {
-    const handleClick = () => {
-        console.log('Попытка перейти в регистрацию');
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            navigate('/blogs');
+        }
+    }, [])
 
-        onClick('SignUp');
+    const match = useMatch('/sign-in');
+    console.log(match, 'match');
+    const handleSignInClick = () => {
+        // проверяем credentionals
+
+        // переключится на страницу blog
+        navigate('/blogs');
     }
 
     useEffect(() => {
@@ -22,9 +29,17 @@ const SignIn: FC<ISignInProps> = ({ onClick }) => {
     return (
         <div className={styles.page}>
             <h2>Sign In </h2>
-            <p>Don't have an account? <button onClick={handleClick}>Sign up</button></p>
+            <button onClick={handleSignInClick}>Sign in</button>
+
+            <p>Don't have an account? <Link className={`${styles.link} ${match?.pathname === '/sign-up' ? styles.active : ''}`} to='/sign-up'>Sign up</Link></p>
         </div>
     )
 }
 
 export default SignIn;
+
+
+// const Link = ({ to, children }: { to: string, children: React.ReactNode }) => {
+//     // кастомная реализация ссылки от react-router
+//     return <a href={to}>{children}</a>
+// }

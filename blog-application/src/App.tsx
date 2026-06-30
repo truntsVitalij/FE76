@@ -1,45 +1,20 @@
-import { useState } from "react";
+import { Outlet, useNavigate } from "react-router";
+
 import { MainLayout } from "./layouts/MainLayout"
-import SignIn from "./pages/SignIn"
-import SignUp from "./pages/SignUp"
-import { NotFound } from "./pages/NotFound";
 
 import './App.css';
+import { useEffect } from "react";
 
 export type TAppPages = 'BlogList' | 'SignIn' | 'SignUp';
 
-// const getActivePageComponent = (activePage) => {
-//   switch (activePage) {
-//     case 'SignIn':
-//       return SignIn
-//     case 'SignUp':
-//       return SignUp
-//     default:
-//       return NotFound;
-//   }
-// }
 
 function App() {
-  const [activePage, setActivePage] = useState<TAppPages>('SignIn');
-
-  // const CurrentComponent = useMemo(() => getActivePageComponent(activePage), [activePage]);
-
-  const changeActivePage = (page: TAppPages) => {
-    setActivePage(page);
-  }
+  // const navigate = useNavigate();
 
   return (
     <div id="app">
 
-      <MainLayout>
-        {
-          activePage === 'SignIn' ?
-            <SignIn onClick={changeActivePage} onAlreadyAuthorized={() => changeActivePage('BlogList')} /> :
-            activePage === 'SignUp' ?
-              <SignUp onClick={changeActivePage} /> :
-              <NotFound />
-        }
-      </MainLayout>
+      <h1>APPLICATION</h1>
     </div>
   )
 }
