@@ -2,11 +2,11 @@ import type { IProps } from "../../types/post";
 import styles from './PostCard.module.css';
 import { useState } from "react";
 
-interface PostCardProps extends IProps {
+interface IPostCardProps extends IProps {
   variant: 'large' | 'medium' | 'small';
 }
 
-const PostCard = ({ post, variant }: PostCardProps) => {
+const PostCard: React.FC<IPostCardProps> = ({ post, variant }) => {
 
    const [likeCount, setLikeCount] = useState(0);
   const [dislikeCount, setDislikeCount] = useState(0);

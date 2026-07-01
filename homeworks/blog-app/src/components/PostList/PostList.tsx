@@ -2,11 +2,11 @@ import PostCard from '../PostCard';
 import type { IPost } from '../../types/post';
 import styles from './PostList.module.css';
 
-interface PostListProps {
+interface IPostListProps {
   posts: IPost[];
 }
 
-const PostList = ({ posts }: PostListProps) => {
+const PostList: React.FC<IPostListProps> = ({ posts }) => {
   return (
     <div className={styles.mainLayout}>
       <div className={styles.leftColumn}>
