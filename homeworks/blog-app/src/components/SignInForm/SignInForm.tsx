@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from './SignInForm.module.css';
 
-interface SignInFormProps {
+interface ISignInFormProps {
   onSuccess: () => void; 
 }
 
-const SignInForm: React.FC<SignInFormProps> = ({ onSuccess }) => {
+const SignInForm: React.FC<ISignInFormProps> = ({ onSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
