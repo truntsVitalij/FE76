@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './SuccessLogin.module.css';
 
-interface SuccessLoginProps {
+interface ISuccessLoginProps {
   onGoToBlog: () => void;
 }
 
-const SuccessLogin: React.FC<SuccessLoginProps> = ({ onGoToBlog }) => {
+const SuccessLogin: React.FC<ISuccessLoginProps> = ({ onGoToBlog }) => {
   return (
     <div className={styles.card}>
       <h2 className={styles.title}>Success</h2>

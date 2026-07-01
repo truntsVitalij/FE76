@@ -5,13 +5,13 @@ export interface ITabItem<T extends string> {
   label: string;
 }
 
-interface TabsProps<T extends string> {
+interface ITabsProps<T extends string> {
   items: readonly ITabItem<T>[]; 
   activeTab: T;                  
   onChange: (tabId: T) => void;
 }
 
-const Tabs = <T extends string>({ items, activeTab, onChange }: TabsProps<T>) => {
+const Tabs = <T extends string>({ items, activeTab, onChange }: ITabsProps<T>) => {
   return (
     <div className={styles.tabsContainer}>
       {items.map(item => (

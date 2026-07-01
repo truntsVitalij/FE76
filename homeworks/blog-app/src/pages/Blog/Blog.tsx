@@ -6,12 +6,12 @@ import styles from "./Blog.module.css";
 
 type TabType = "All" | "My favorites" | "Popular";
 
-interface BlogProps {
+interface IBlogProps {
   posts: IPost[];
   title: string;
 }
 
-const Blog = ({ posts, title }: BlogProps) => {
+const Blog = ({ posts, title }: IBlogProps) => {
   const [activeTab, setActiveTab] = useState<TabType>("All");
   const BLOG_TABS = [
     { id: "All", label: "All" },
