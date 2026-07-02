@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')!).render(
         <Route element={<MainLayout />}>
           <Route index element={<App />} />
           <Route path='blogs' element={<BlogList />} />
-          <Route path='blog/:id/:userId' element={<Blog />} />
+          <Route path='blog/:id' element={<Blog />} />
           <Route index element={<SignIn />} />
           <Route path='sign-up' element={<SignUp />} />
           <Route path='*' element={<NotFound />} />

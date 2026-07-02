@@ -1,9 +1,4 @@
-import { Outlet, useNavigate } from "react-router";
-
-import { MainLayout } from "./layouts/MainLayout"
-
 import './App.css';
-import { useEffect } from "react";
 
 export type TAppPages = 'BlogList' | 'SignIn' | 'SignUp';
 
