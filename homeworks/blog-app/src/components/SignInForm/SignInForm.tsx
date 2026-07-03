@@ -1,65 +1,62 @@
-import React, { useState } from 'react';
+import { type FC, useState } from 'react';
+import Input from '../Input';
 import styles from './SignInForm.module.css';
 
 interface ISignInFormProps {
-  onSuccess: () => void; 
+  onSuccess: () => void;
 }
 
-const SignInForm: React.FC<ISignInFormProps> = ({ onSuccess }) => {
+const SignInForm: FC<ISignInFormProps> = ({ onSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(email)) {
-      setError('Enter a valid email address.');
+      setErrors({ email: 'Enter a valid email address.' });
       return;
     }
-
     if (password.length < 6) {
-      setError('Password must be at least 6 characters.');
+      setErrors({ password: 'Password must be at least 6 characters.' });
       return;
     }
 
-    setError('');
+    setErrors({});
     localStorage.setItem('isLoggedIn', 'true');
-    onSuccess(); 
+    onSuccess();
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {error && <div className={styles.error}>{error}</div>}
-
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          placeholder="example@mail.com"
-          className={styles.input}
-        />
-      </div>
-
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          placeholder="Min. 6 characters"
-          className={styles.input}
-        />
-      </div>
-
+      <div className={styles.fields}>
+      <Input
+        id="email"
+        label="Email"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        placeholder="example@mail.com"
+        error={errors.email}
+      />
+      <Input
+        id="password"
+        label="Password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        placeholder="Min. 6 characters"
+        error={errors.password}
+      />
       <button type="submit" className={styles.submitBtn}>
         Sign In
       </button>
+      </div>
     </form>
   );
 };
