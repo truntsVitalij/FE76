@@ -3,6 +3,7 @@ import PostGrid from "../../components/PostGrid";
 import Tabs from "../../components/Tabs";
 import type { IPost } from "../../types/post";
 import styles from "./Blog.module.css";
+import Title from '../../components/Title/Title'
 
 type TabType = "All" | "My favorites" | "Popular";
 
@@ -21,7 +22,7 @@ const Blog = ({ posts, title }: IBlogProps) => {
 
   return (
     <section className={styles.blogContainer}>
-      <h1 className={styles.title}>{title}</h1>
+      <Title level={2} className={styles.title}>{title}</Title>
       <Tabs items={BLOG_TABS} activeTab={activeTab} onChange={setActiveTab} />
       <PostGrid posts={posts} />
     </section>
