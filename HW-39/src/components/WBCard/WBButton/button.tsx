@@ -5,7 +5,7 @@ type Props = {
     product: Product;
 };
 
-const ProductActions = ({product}:  Props) => {
+const WBButton = ({product}:  Props) => {
     return (
         <div className={styles.buttonAdd}>
             <button onClick={() => console.log("Add to cart", product.id)}> Add </button>
@@ -13,4 +13,4 @@ const ProductActions = ({product}:  Props) => {
         );
 };
 
-export default ProductActions;
+export default WBButton;
