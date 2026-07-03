@@ -1,21 +1,16 @@
-
 import { useEffect, useState } from "react";
 
 import { Layout } from "./components/Layout/Layout";
 
-import { LoginPage } from "./pages/LoginPage";
-import { SuccessLoginPage } from "./pages/SuccessLoginPage";
-import { BlogPage } from "./pages/BlogPage";
+import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { SuccessLoginPage } from "./pages/SuccessLoginPage/SuccessLoginPage";
+import { BlogPage } from "./pages/BlogPage/BlogPage";
 
 function App() {
-  const [page, setPage] =
-    useState<
-      "login" | "success" | "blog"
-    >("login");
+  const [page, setPage] = useState<"login" | "success" | "blog">("login");
 
   useEffect(() => {
-    const isAuth =
-      localStorage.getItem("isAuth");
+    const isAuth = localStorage.getItem("isAuth");
 
     if (isAuth) {
       setPage("blog");
@@ -24,15 +19,9 @@ function App() {
 
   return (
     <Layout>
-      {page === "login" && (
-        <LoginPage setPage={setPage} />
-      )}
+      {page === "login" && <LoginPage setPage={setPage} />}
 
-      {page === "success" && (
-        <SuccessLoginPage
-          setPage={setPage}
-        />
-      )}
+      {page === "success" && <SuccessLoginPage setPage={setPage} />}
 
       {page === "blog" && <BlogPage />}
     </Layout>
@@ -40,8 +29,6 @@ function App() {
 }
 
 export default App;
-
-
 
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
