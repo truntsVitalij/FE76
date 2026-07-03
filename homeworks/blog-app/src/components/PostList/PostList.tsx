@@ -1,26 +1,20 @@
+
+import { type FC } from 'react';
 import PostCard from '../PostCard';
 import type { IPost } from '../../types/post';
 import styles from './PostList.module.css';
 
 interface IPostListProps {
   posts: IPost[];
+  variant?: 'large' | 'medium' | 'small'; 
 }
 
-const PostList: React.FC<IPostListProps> = ({ posts }) => {
+const PostList: FC<IPostListProps> = ({ posts, variant = 'medium' }) => {
   return (
-    <div className={styles.mainLayout}>
-      <div className={styles.leftColumn}>
-        {posts.map((post, index) => index < 5 && (
-          <PostCard key={post.id} post={post} variant={index === 0 ? 'large' : 'medium'} />
-        ))}
-      </div>
-      {posts.length > 5 && (
-        <div className={styles.rightColumn}>
-          {posts.map((post, index) => index >= 5 && (
-            <PostCard key={post.id} post={post} variant="small" />
-          ))}
-        </div>
-      )}
+    <div className={styles.list}>
+      {posts.map((post) => (
+        <PostCard key={post.id} post={post} variant={variant} />
+      ))}
     </div>
   );
 };

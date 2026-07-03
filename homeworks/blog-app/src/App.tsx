@@ -5,6 +5,7 @@ import SuccessLogin from './pages/SuccessLogin';
 import Blog from './pages/Blog';
 import posts from './data/posts';
 
+
 type PageType = 'signin' | 'success' | 'blog';
 
 function App() {
