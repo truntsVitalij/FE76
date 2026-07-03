@@ -34,7 +34,7 @@ export const blogs = [
         },
 
          {
-        id: 3,
+        id: 4 ,
         title: "Phyton",
         category: ["backend"],
         text: `Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. 
