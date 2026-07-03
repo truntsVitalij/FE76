@@ -1,24 +1,5 @@
-.mainLayout {
-  display: grid;
-  grid-template-columns: 2fr 1fr; 
-  gap: 32px;
-}
-
-.leftColumn {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); 
-  gap: 32px;
-  align-content: start;
-}
-
-.leftColumn > article:nth-child(1) {
-  grid-column: span 2;
-}
-
-.rightColumn {
+.list {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  border-left: 1px solid #e0e0e0;
-  padding-left: 32px;
 }
