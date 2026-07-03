@@ -1,6 +1,7 @@
 import type { IProps } from "../../types/post";
 import styles from './PostCard.module.css';
 import { useState } from "react";
+import Title from '../Title/Title';
 
 interface IPostCardProps extends IProps {
   variant: 'large' | 'medium' | 'small';
@@ -21,7 +22,7 @@ const PostCard: React.FC<IPostCardProps> = ({ post, variant }) => {
       </div>
       <div className={styles.content}>
         <p className={styles.date}>{post.date}</p>
-        <h2 className={styles.title}>{post.title}</h2>
+        <Title level={2} className={styles.title}>{post.title}</Title>
         <p className={styles.text}>{post.text}</p>
       </div>
        <div className={styles.actions}>

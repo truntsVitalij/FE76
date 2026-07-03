@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SuccessLogin.module.css';
+import Title from '../../components/Title/Title';
 
 interface ISuccessLoginProps {
   onGoToBlog: () => void;
@@ -8,7 +9,7 @@ interface ISuccessLoginProps {
 const SuccessLogin: React.FC<ISuccessLoginProps> = ({ onGoToBlog }) => {
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>Success</h2>
+      <Title level={2} className={styles.title}>Success</Title>
       
       <div className={styles.box}>
         <p className={styles.text}>
