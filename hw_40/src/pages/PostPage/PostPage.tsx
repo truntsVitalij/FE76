@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ThumbsUp, ThumbsDown, Bookmark, MoreHorizontal } from 'lucide-react';
 import type { Post } from '../blog/types';
 
 interface PostPageProps {
@@ -51,11 +52,31 @@ const Title = styled.h1`
   margin: 0.5rem 0 1rem;
 `;
 
-const Content = styled.p`
-  padding: 0 1.5rem 1.5rem;
+const Description = styled.p`
+  padding: 0 1.5rem;
   font-size: 1rem;
   color: #4b5563;
   line-height: 1.6;
+  margin-bottom: 1.5rem;
+`;
+
+const Actions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem 1.5rem;
+`;
+
+const ActionIcons = styled.div`
+  display: flex;
+  gap: 12px;
+  color: #6b7280;
+`;
+
+const RightIcons = styled.div`
+  display: flex;
+  gap: 12px;
+  color: #6b7280;
 `;
 
 export const PostPage: React.FC<PostPageProps> = ({ posts }) => {
@@ -79,9 +100,19 @@ export const PostPage: React.FC<PostPageProps> = ({ posts }) => {
         <Image src={post.image} alt={post.title} />
         <Meta>{post.date}</Meta>
         <Title>{post.title}</Title>
-        <Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Content>
+        <Description>
+          {post.description}
+        </Description>
+        <Actions>
+          <ActionIcons>
+            <ThumbsUp size={20} />
+            <ThumbsDown size={20} />
+          </ActionIcons>
+          <RightIcons>
+            <Bookmark size={20} />
+            <MoreHorizontal size={20} />
+          </RightIcons>
+        </Actions>
       </Article>
     </Container>
   );

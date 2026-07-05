@@ -3,17 +3,24 @@
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper {
   display: flex;
-  height: 100%;
+  flex: 1;
 }
 
 .textBlock {
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+}
+
+.image {
+  cursor: pointer;
 }
 
 .card.l .wrapper {
@@ -78,7 +85,7 @@
 
 .card.s .actions {
   border-top: none;
-  padding-top: 0.25rem;
+  padding: 0.25rem 0.75rem 0.75rem;
 }
 
 .image {
@@ -110,8 +117,7 @@
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #f3f4f6;
-  padding-top: 0.75rem;
-  margin-top: auto;
+  padding: 0.75rem 1rem;
 }
 
 .actionIcons {
@@ -124,4 +130,37 @@
   display: flex;
   gap: 1rem;
   color: #9ca3af;
+}
+
+.description {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 2;
+}
+
+.iconBtn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.iconBtn:hover {
+  opacity: 0.7;
+}
+
+.likeActive {
+  color: #2563eb;
+}
+
+.dislikeActive {
+  color: #dc2626;
+}
+
+.favoriteActive {
+  color: #1a237e;
 }
