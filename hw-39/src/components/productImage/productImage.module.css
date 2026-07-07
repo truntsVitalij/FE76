@@ -1,0 +1,15 @@
+.imageWrapper {
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s;
+}
+
+.image:hover {
+    transform: scale(1.05);
+}

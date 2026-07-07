@@ -1,0 +1,23 @@
+.card {
+    position: relative;
+    width: 240px;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+
+}
+
+
+.card:hover button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content {
+    padding: 12px;
+}

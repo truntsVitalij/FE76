@@ -1,0 +1,21 @@
+.button {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 180px;
+
+    padding: 10px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #cb11ab;
+
+    color: #fff;
+
+    opacity: 0;
+    transform: translateY(12px);
+
+    transition: all .25s;
+    cursor: pointer;
+}
