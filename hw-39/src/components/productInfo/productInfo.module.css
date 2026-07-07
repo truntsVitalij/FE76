@@ -1,0 +1,19 @@
+.info {
+    margin-bottom: 12px;
+}
+
+.brand {
+    font-size: 14px;
+    color: #8b8b8b;
+    margin-bottom: 4px;
+}
+
+.title {
+    font-size: 15px;
+    color: #242424;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
