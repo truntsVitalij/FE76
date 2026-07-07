@@ -1,0 +1,20 @@
+.hamburger {
+    width: 90px;
+    height: 90px;
+
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #3137b8;
+    color: white;
+
+    transition: .3s;
+}
+
+.hamburger:hover {
+    background: #252b9d;
+}
