@@ -1,25 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
-function SuccessLogin(){
+function SuccessLogin() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  return (
+    <div>
+      <h2>Вы успешно вошли!</h2>
 
-    return(
-
-        <div>
-
-            <h2>You have logged in successfully!</h2>
-
-            <button
-                onClick={()=>navigate("/blog")}
-            >
-                Go to Blog
-            </button>
-
-        </div>
-
-    )
-
+      <button onClick={() => navigate("/blog")}>
+        Перейти к постам
+      </button>
+    </div>
+  );
 }
 
 export default SuccessLogin;

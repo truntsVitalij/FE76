@@ -1,59 +1,60 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const EMAIL = "admin@mail.com";
-const PASSWORD = "123456";
+function Login() {
+  const navigate = useNavigate();
 
-function Login(){
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");
+  function handleSubmit(e) {
+    e.preventDefault();
 
-    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    function handleSubmit(e){
-
-        e.preventDefault();
-
-        if(email===EMAIL && password===PASSWORD){
-
-            localStorage.setItem("isAuth","true");
-
-            navigate("/success");
-        }
-        else{
-            alert("Wrong login or password");
-        }
-
+    if (
+      user &&
+      email === user.email &&
+      password === user.password
+    ) {
+      localStorage.setItem("isAuth", "true");
+      navigate("/success");
+    } else {
+      alert("Неверный email или пароль");
     }
+  }
 
-    return(
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Вход</h2>
 
-        <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-            <input
-                placeholder="Email"
-                value={email}
-                onChange={(e)=>setEmail(e.target.value)}
-            />
+      <br />
+      <br />
 
-            <br/><br/>
+      <input
+        type="password"
+        placeholder="Пароль"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-            />
+      <br />
+      <br />
 
-            <br/><br/>
+      <button type="submit">Войти</button>
 
-            <button>Login</button>
-
-        </form>
-
-    )
-
+      <p>
+        Нет аккаунта? <Link to="/register">Регистрация</Link>
+      </p>
+    </form>
+  );
 }
 
 export default Login;
