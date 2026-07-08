@@ -1,0 +1,17 @@
+.blogPage{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:32px;
+}
+
+.blogPage__left{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+}
+
+.blogPage__right{
+    display:flex;
+    flex-direction:column;
+    gap:32px;
+}
