@@ -9,7 +9,8 @@ import Layout from "./components/layout/layout";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import SuccessLogin from "./pages/successLogin/successLogin";
-import Blog from "./pages/blog/blog";
+import BlogList from "./pages/blogList/blogList";
+import BlogPage from "./pages/blogPage/blogPage";
 import ProtectedRoute from "./components/protectedRoute";
 
 function App() {
@@ -36,12 +37,21 @@ function App() {
           />
 
           <Route
-            path="/blog"
-            element={
-              <ProtectedRoute>
-                <Blog />
-              </ProtectedRoute>
-            }
+              path="/blog"
+              element={
+                  <ProtectedRoute>
+                      <BlogList />
+                  </ProtectedRoute>
+              }
+          />
+
+          <Route
+              path="/blog/:id"
+              element={
+                  <ProtectedRoute>
+                      <BlogPage />
+                  </ProtectedRoute>
+              }
           />
         </Route>
       </Routes>
