@@ -1,0 +1,15 @@
+.layout{
+    min-height:100vh;
+}
+
+.header{
+    background:#222;
+    color:white;
+    padding:20px;
+}
+
+.main{
+    max-width:1000px;
+    margin:auto;
+    padding:30px;
+}
