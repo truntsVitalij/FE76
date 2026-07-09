@@ -1,0 +1,30 @@
+/* .searchPage {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.result {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+  .result {
+    grid-template-columns: 80px 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .result {
+    grid-template-columns: 1fr;
+  }
+
+  .result img {
+    width: 100%;
+    max-width: 200px;
+  }
+} */
