@@ -1,30 +1,54 @@
 .button{
-
-    width:100%;
+    /* width:100%; */
     height:56px;
+    background:var(--system-color-primary);
+    border:1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 
-    background:#2231AA;
-
-    border:none;
-
-    color:white;
-
+    color:var(--btn-colorTextW) ;
     font-size:18px;
-
     cursor:pointer;
-
     transition:.2s;
+    border-radius: 2px;
+    padding: 16px 32px;
 
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
 }
 
 .button:hover{
-
-    background:#5360CD;
-
+    background:var(--system-color-primary2);
+    
 }
 
 .button:active{
+    background:var(--system-color-primary);
+}
 
-    background:#5360CD;
+.primary {
+background:var(--system-color-primary)
+}
 
+.secondary{
+background: var(--btn-color-secondary-default);
+color: var(--btn-colorTextS);
+}
+.secondary:hover{
+background: var(--btn-color-secondary-hover);
+}
+
+.secondary2{
+background-color: transparent;
+color: var(--btn-colorText-secondary2-default);
+}
+.secondary2:hover{
+border-color: var(--btn-color-secondary-hover);
+}
+
+.fullWidth {
+    width: 100%;
 }

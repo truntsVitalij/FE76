@@ -6,7 +6,8 @@ import App from "./App";
 
 import { HomePage } from "./pages/HomePage/HomePage";
 import { BlogPage } from "./pages/BlogPage/BlogPage";
-import { ArticlePage } from './pages/ArticlePage'
+import { ArticlePage } from './pages/ArticlePage';
+import AddPostPage from "./pages/AddPostPage";
 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path='blog' element={<BlogPage />} /> 
         <Route path='article/:id' element={<ArticlePage />} /> 
         <Route path='search' element={<SearchPage />} />
+        <Route path='add-post' element={<AddPostPage />} />
 
         <Route path='sign-in' element={<LoginPage />} />
         <Route path='sign-up' element={<RegisterPage />} /> 

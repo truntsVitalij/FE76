@@ -45,5 +45,5 @@ display: block;
     font-size: 18px;
     font-weight: 600;
     line-height: 28px;
-    color: #313037;
+    color: var(--app-text);
 }

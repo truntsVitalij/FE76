@@ -33,11 +33,11 @@ display: block;
     font-size: 40px;
     font-weight: 700;
     line-height: 56px;
-    color: #313037;
+    color: var(--app-text);
 }
 
 .heroCard__text {
     font-size: 18px;
     line-height: 32px;
-    color: #8D8E97;
+    color: var(--app-text);
 }

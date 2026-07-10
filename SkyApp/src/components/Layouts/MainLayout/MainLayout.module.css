@@ -4,8 +4,8 @@
     flex-direction: column;
     
     .contentWrapper {
-        display: flex;
-        flex-direction: column;
+    display: flex;
+    flex-direction: column;
     flex: 1;
     overflow: auto;
 

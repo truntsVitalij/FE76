@@ -1,12 +1,27 @@
-import { type FC, useState } from "react";
+import { type FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
 import { Search, Menu, X } from "lucide-react";
+import { ToggleTheme } from "../Toggle/Toggle";
 
 export const Header: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem('skyAppTheme') === 'dark';
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('skyAppTheme', 'dark');
+    } else {
+      document.body.removeAttribute('data-theme');
+      localStorage.setItem('skyAppTheme', 'light');
+    }
+  }, [isDark]);
+
 
   return (
     <header className={styles.header}>
@@ -38,6 +53,8 @@ export const Header: FC = () => {
       </button>
       </div>
 
+      <ToggleTheme isDark={isDark} onToggle={() => setIsDark(!isDark)} />
+
       <div className={styles.actions}>
         <Link to="sign-in" className={styles.authBtn}>
           Sign In
@@ -57,3 +74,4 @@ export const Header: FC = () => {
     </header>
   );
 };
+
