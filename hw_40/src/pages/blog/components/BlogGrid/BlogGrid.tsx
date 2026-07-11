@@ -1,7 +1,8 @@
 import { type FC } from 'react';
-import { PostCard } from '../PostCard';
+import { PostCard } from '../../../../components/PostCard';
+import { PostList } from '../PostList';
 import styles from './BlogGrid.module.css';
-import type { Post } from '../../pages/blog/types';
+import type { Post } from '../../../../pages/blog/types';
 
 interface BlogGridProps {
   posts: Post[];
@@ -26,17 +27,17 @@ export const BlogGrid: FC<BlogGridProps> = ({ posts }) => {
         <PostCard post={bigPost} size="l" />
       </div>
       
-      <div className={styles.mediumRow}>
-        {mediumPosts.map(post => (
-          <PostCard key={post.id} post={post} size="m" />
-        ))}
-      </div>
+      <PostList 
+        posts={mediumPosts} 
+        size="m" 
+        className={styles.mediumRow} 
+      />
       
-      <div className={styles.sideColumn}>
-        {smallPosts.map(post => (
-          <PostCard key={post.id} post={post} size="s" />
-        ))}
-      </div>
+      <PostList 
+        posts={smallPosts} 
+        size="s" 
+        className={styles.sideColumn} 
+      />
     </div>
   );
 };

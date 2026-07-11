@@ -1,7 +1,7 @@
 import { type FC, useState, useMemo } from 'react';
 import { BlogHeader } from '../../components/BlogHeader';
 import { BlogTabs } from '../../components/BlogTabs';
-import { BlogGrid } from '../../components/BlogGrid';
+import { BlogGrid } from '../blog/components/BlogGrid';
 import { BlogPagination } from '../../components/BlogPagination';
 import type { Post, TabType } from './types';
 import styles from './Blog.module.css';

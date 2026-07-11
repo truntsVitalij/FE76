@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/Button/Button';
+import { Card } from '../../components/Card/Card';
+import { Form } from '../../components/Form/Form';
+import { Input } from '../../components/Input/Input';
 import type { RegisterProps, FormData, FormErrors } from './types';
 
 const Container = styled.div`
@@ -29,49 +32,6 @@ const Title = styled.h1`
   color: #1f2937;
 `;
 
-const Card = styled.div`
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const InputGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-`;
-
-const Input = styled.input<{ $hasError?: boolean }>`
-  padding: 0.75rem 1rem;
-  border: 1px solid ${props => props.$hasError ? '#ef4444' : '#e5e7eb'};
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: #1f2937;
-  outline: none;
-  transition: border-color 0.2s;
-
-  &::placeholder {
-    color: #9ca3af;
-  }
-
-  &:focus {
-    border-color: ${props => props.$hasError ? '#ef4444' : '#1a237e'};
-  }
-`;
-
-const ErrorMessage = styled.span`
-  font-size: 0.75rem;
-  color: #ef4444;
-  margin-top: 0.125rem;
-`;
-
 const SubmitButton = styled(Button)`
   margin-top: 0.5rem;
   width: 100%;
@@ -94,8 +54,6 @@ const StyledLink = styled(Link)`
     text-decoration: underline;
   }
 `;
-
-
 
 export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
   const [formData, setFormData] = useState<FormData>({
@@ -154,43 +112,32 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
       <Title>Sign Up</Title>
       <Card>
         <Form onSubmit={handleSubmit}>
-          <InputGroup>
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              $hasError={!!errors.email}
-            />
-            {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
-          </InputGroup>
+          <Input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            error={errors.email}
+          />
 
-          <InputGroup>
-            <Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              $hasError={!!errors.password}
-            />
-            {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
-          </InputGroup>
+          <Input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            error={errors.password}
+          />
 
-          <InputGroup>
-            <Input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              $hasError={!!errors.confirmPassword}
-            />
-            {errors.confirmPassword && (
-              <ErrorMessage>{errors.confirmPassword}</ErrorMessage>
-            )}
-          </InputGroup>
+          <Input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            error={errors.confirmPassword}
+          />
 
           <SubmitButton type="submit">
             Sign Up
