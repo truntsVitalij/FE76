@@ -1,6 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { PostArticle } from '../../pages/blog/components/PostArticle';
 import type { Post } from '../blog/types';
 
 interface PostPageProps {
@@ -24,50 +25,22 @@ const BackLink = styled(Link)`
   }
 `;
 
-const Article = styled.article`
-  background: white;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-`;
-
-const Meta = styled.div`
-  padding: 1.5rem 1.5rem 0;
-  color: #9ca3af;
-  font-size: 0.875rem;
-`;
-
-const Title = styled.h1`
-  padding: 0 1.5rem;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin: 0.5rem 0 1rem;
-`;
-
-const Content = styled.p`
-  padding: 0 1.5rem 1.5rem;
-  font-size: 1rem;
-  color: #4b5563;
-  line-height: 1.6;
+const NotFound = styled.div`
+  text-align: center;
+  padding: 3rem;
 `;
 
 export const PostPage: React.FC<PostPageProps> = ({ posts }) => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const post = posts.find(p => p.id === Number(id));
 
   if (!post) {
     return (
       <Container>
-        <h1>Post not found</h1>
-        <button onClick={() => navigate(-1)}>Go back</button>
+        <NotFound>
+          <h1>Post not found</h1>
+          <BackLink to="/blog">← Back to blog</BackLink>
+        </NotFound>
       </Container>
     );
   }
@@ -75,14 +48,7 @@ export const PostPage: React.FC<PostPageProps> = ({ posts }) => {
   return (
     <Container>
       <BackLink to="/blog">← Back to blog</BackLink>
-      <Article>
-        <Image src={post.image} alt={post.title} />
-        <Meta>{post.date}</Meta>
-        <Title>{post.title}</Title>
-        <Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Content>
-      </Article>
+      <PostArticle post={post} />
     </Container>
   );
 };
