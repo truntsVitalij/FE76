@@ -1,0 +1,131 @@
+.sidebarDropdown {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 256px;
+  max-height: 0;
+  overflow: hidden;
+  background-color: var(--white);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.sidebarOpen {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.sidebarUserInfo {
+  padding: 16px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebarAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.sidebarUserText {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarUserName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.sidebarLinks {
+  padding: 16px 0;
+}
+
+.sidebarLink {
+  display: block;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebarLink:hover {
+  background-color: var(--gray-50);
+}
+
+.linkActive {
+  color: var(--primary-dark);
+}
+
+.linkDefault {
+  color: var(--gray-800);
+}
+
+.sidebarFooter {
+  border-top: 1px solid var(--gray-200);
+}
+
+.themeButtons {
+  display: flex;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.themeBtn {
+  flex: 1;
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+  border-right: 1px solid var(--gray-200);
+  transition: background-color 0.2s;
+}
+
+.themeBtn:last-child {
+  border-right: none;
+}
+
+.themeBtn:hover {
+  background-color: var(--gray-50);
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: var(--gray-200);
+}
+
+.themeIcon {
+  width: 16px;
+  height: 16px;
+}

@@ -3,7 +3,6 @@ import { Header } from '../../components/Header';
 import { Tabs } from '../../components/Tabs';
 import { Grid } from '../../components/Grid';
 import { Pagination } from '../../components/Pagination';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import type { TabType } from './types';
 import { ALL_POSTS } from '../../data/posts';
 import styles from './Blog.module.css';
@@ -11,47 +10,33 @@ import styles from './Blog.module.css';
 interface BlogProps {
   userEmail?: string;
   onLogout?: () => void;
+  favoriteIds: number[];
+  likedIds: number[];
+  dislikedIds: number[];
+  onToggleFavorite: (postId: number) => void;
+  onToggleLike: (postId: number) => void;
+  onToggleDislike: (postId: number) => void;
 }
 
 const POSTS_PER_PAGE = 6;
 
-export const Blog: FC<BlogProps> = ({ userEmail = '', onLogout }) => {
+export const Blog: FC<BlogProps> = ({
+  userEmail = '',
+  onLogout,
+  favoriteIds,
+  likedIds,
+  dislikedIds,
+  onToggleFavorite,
+  onToggleLike,
+  onToggleDislike
+}) => {
   const [activeTab, setActiveTab] = useState<TabType>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [favoriteIds, setFavoriteIds] = useLocalStorage<number[]>('favoriteIds', []);
-  const [likedIds, setLikedIds] = useLocalStorage<number[]>('likedIds', []);
-  const [dislikedIds, setDislikedIds] = useLocalStorage<number[]>('dislikedIds', []);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [activeTab, searchQuery]);
-
-  const handleToggleFavorite = (postId: number) => {
-    setFavoriteIds(prev => 
-      prev.includes(postId) 
-        ? prev.filter(id => id !== postId)
-        : [...prev, postId]
-    );
-  };
-
-  const handleToggleLike = (postId: number) => {
-    setLikedIds(prev => 
-      prev.includes(postId) 
-        ? prev.filter(id => id !== postId)
-        : [...prev, postId]
-    );
-    setDislikedIds(prev => prev.filter(id => id !== postId));
-  };
-
-  const handleToggleDislike = (postId: number) => {
-    setDislikedIds(prev => 
-      prev.includes(postId) 
-        ? prev.filter(id => id !== postId)
-        : [...prev, postId]
-    );
-    setLikedIds(prev => prev.filter(id => id !== postId));
-  };
 
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
@@ -111,9 +96,9 @@ export const Blog: FC<BlogProps> = ({ userEmail = '', onLogout }) => {
         favoriteIds={favoriteIds}
         likedIds={likedIds}
         dislikedIds={dislikedIds}
-        onToggleFavorite={handleToggleFavorite}
-        onToggleLike={handleToggleLike}
-        onToggleDislike={handleToggleDislike}
+        onToggleFavorite={onToggleFavorite}
+        onToggleLike={onToggleLike}
+        onToggleDislike={onToggleDislike}
       />
       {totalPages > 1 && (
         <Pagination 

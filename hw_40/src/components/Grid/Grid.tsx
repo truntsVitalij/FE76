@@ -68,8 +68,8 @@ export const Grid: FC<GridProps> = ({
   }
 
   const bigPost = posts[0];
-  const mediumPosts = posts.slice(3, 5).filter(Boolean);
-  const smallPosts = posts.slice(1, 3).concat(posts.slice(5)).filter(Boolean);
+  const mediumPosts = posts.slice(3, 5);
+  const smallPosts = posts.slice(1, 3).concat(posts.slice(5));
 
   return (
     <div className={styles.grid}>
@@ -78,11 +78,11 @@ export const Grid: FC<GridProps> = ({
       </div>
       
       <div className={styles.mediumRow}>
-        {mediumPosts.map(post => post && renderPostCard(post, 'm'))}
+        {mediumPosts.map(post => renderPostCard(post, 'm'))}
       </div>
       
       <div className={styles.sideColumn}>
-        {smallPosts.map(post => post && renderPostCard(post, 's'))}
+        {smallPosts.map(post => renderPostCard(post, 's'))}
       </div>
     </div>
   );

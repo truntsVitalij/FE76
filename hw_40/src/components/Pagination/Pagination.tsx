@@ -8,6 +8,38 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
+const getPageNumbers = (currentPage: number, totalPages: number): (number | string)[] => {
+  const pages: (number | string)[] = [];
+
+  if (totalPages <= 5) {
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+
+  pages.push(1);
+
+  if (currentPage > 3) {
+    pages.push('...');
+  }
+
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
+  }
+
+  if (currentPage < totalPages - 2) {
+    pages.push('...');
+  }
+
+  pages.push(totalPages);
+
+  return pages;
+};
+
 export const Pagination: FC<PaginationProps> = ({ 
   totalPages, 
   currentPage, 
@@ -25,46 +57,7 @@ export const Pagination: FC<PaginationProps> = ({
     }
   };
 
-  const handlePageClick = (page: number) => {
-    onPageChange(page);
-  };
-
-  const getPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
-
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      if (currentPage <= 3) {
-        for (let i = 1; i <= 3; i++) {
-          pages.push(i);
-        }
-        pages.push('...');
-        pages.push(totalPages);
-      } else if (currentPage >= totalPages - 2) {
-        pages.push(1);
-        pages.push('...');
-        for (let i = totalPages - 2; i <= totalPages; i++) {
-          pages.push(i);
-        }
-      } else {
-        pages.push(1);
-        pages.push('...');
-        pages.push(currentPage - 1);
-        pages.push(currentPage);
-        pages.push(currentPage + 1);
-        pages.push('...');
-        pages.push(totalPages);
-      }
-    }
-
-    return pages;
-  };
-
-  const pageNumbers = getPageNumbers();
+  const pageNumbers = getPageNumbers(currentPage, totalPages);
 
   return (
     <div className={styles.pagination}>
@@ -82,7 +75,7 @@ export const Pagination: FC<PaginationProps> = ({
             <span
               key={index}
               className={currentPage === page ? styles.active : ''}
-              onClick={() => handlePageClick(page)}
+              onClick={() => onPageChange(page)}
             >
               {page}
             </span>

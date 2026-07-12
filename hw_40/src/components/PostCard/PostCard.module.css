@@ -164,3 +164,41 @@
 .favoriteActive {
   color: #1a237e;
 }
+
+.card.full {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .image {
+    width: 100%;
+    height: 400px;
+    order: -1;
+  }
+
+  .textBlock {
+    padding: 1.5rem;
+  }
+
+  .meta {
+    font-size: 0.875rem;
+  }
+
+  .cardTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .actions {
+    padding: 0 1.5rem 1.5rem;
+    border-top: none;
+  }
+}

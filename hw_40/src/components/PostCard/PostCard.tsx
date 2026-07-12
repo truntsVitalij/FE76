@@ -6,24 +6,24 @@ import type { Post } from '../../pages/blog/types';
 
 interface PostCardProps {
   post: Post;
-  size?: 'l' | 'm' | 's';
-  isFavorite: boolean;
-  isLiked: boolean;
-  isDisliked: boolean;
-  onToggleFavorite: (postId: number) => void;
-  onToggleLike: (postId: number) => void;
-  onToggleDislike: (postId: number) => void;
+  size: 's' | 'm' | 'l' | 'full';
+  isFavorite?: boolean;
+  isLiked?: boolean;
+  isDisliked?: boolean;
+  onToggleFavorite?: (id: number) => void;
+  onToggleLike?: (id: number) => void;
+  onToggleDislike?: (id: number) => void;
 }
 
-export const PostCard: FC<PostCardProps> = ({ 
-  post, 
-  size = 'm', 
-  isFavorite,
-  isLiked,
-  isDisliked,
+export const PostCard: FC<PostCardProps> = ({
+  post,
+  size,
+  isFavorite = false,
+  isLiked = false,
+  isDisliked = false,
   onToggleFavorite,
   onToggleLike,
-  onToggleDislike 
+  onToggleDislike
 }) => {
   const navigate = useNavigate();
 
@@ -31,20 +31,19 @@ export const PostCard: FC<PostCardProps> = ({
     navigate(`/post/${post.id}`);
   };
 
-  const handleActionClick = (e: React.MouseEvent, action: string) => {
+  const handleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
-    
-    switch (action) {
-      case 'like':
-        onToggleLike(post.id);
-        break;
-      case 'dislike':
-        onToggleDislike(post.id);
-        break;
-      case 'bookmark':
-        onToggleFavorite(post.id);
-        break;
-    }
+    onToggleLike?.(post.id);
+  };
+
+  const handleDislike = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onToggleDislike?.(post.id);
+  };
+
+  const handleBookmark = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onToggleFavorite?.(post.id);
   };
 
   return (
@@ -59,7 +58,7 @@ export const PostCard: FC<PostCardProps> = ({
         </div>
         <img 
           src={post.image} 
-          alt="Blog post" 
+          alt={post.title} 
           className={styles.image} 
           onClick={handleCardClick}
         />
@@ -68,15 +67,15 @@ export const PostCard: FC<PostCardProps> = ({
         <div className={styles.actionIcons}>
           <ThumbsUp 
             size={16} 
-            onClick={(e) => handleActionClick(e, 'like')}
-            className={`${styles.iconBtn} ${isLiked ? styles.likeActive : ''}`}
+            onClick={handleLike}
+            className={styles.iconBtn}
             fill={isLiked ? '#2563eb' : 'none'}
             color={isLiked ? '#2563eb' : '#6b7280'}
           />
           <ThumbsDown 
             size={16} 
-            onClick={(e) => handleActionClick(e, 'dislike')}
-            className={`${styles.iconBtn} ${isDisliked ? styles.dislikeActive : ''}`}
+            onClick={handleDislike}
+            className={styles.iconBtn}
             fill={isDisliked ? '#dc2626' : 'none'}
             color={isDisliked ? '#dc2626' : '#6b7280'}
           />
@@ -84,8 +83,8 @@ export const PostCard: FC<PostCardProps> = ({
         <div className={styles.rightIcons}>
           <Bookmark 
             size={16} 
-            onClick={(e) => handleActionClick(e, 'bookmark')}
-            className={`${styles.iconBtn} ${isFavorite ? styles.favoriteActive : ''}`}
+            onClick={handleBookmark}
+            className={styles.iconBtn}
             fill={isFavorite ? '#1a237e' : 'none'}
             color={isFavorite ? '#1a237e' : '#9ca3af'}
           />
