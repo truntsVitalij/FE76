@@ -2,73 +2,73 @@ import styles from './BlogList.module.css';
 import { type FC, useEffect, useMemo, useState } from 'react';
 import { BlogCard } from '../../components/BlogCard';
 import { Pagination } from '../../components/Pagination';
-import { useSearchParams } from 'react-router';
+import { useAppSelector } from '../../store';
+import { useDispatch } from 'react-redux';
+import { fetchBlogList, updateBlogList } from '../../store/actions/blogs/blogsActions';
 // import type { useLoaderData } from 'react-router';
 
-type Post = {
-    id: number;
-    title: string;
-    body: string;
-}
 
 const POSTS_PER_PAGE = 6;
 
 export const BlogList: FC = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [postList, setPostList] = useState<Array<Post>>([]); // useState<Post[]>([]);
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [error, setError] = useState<string | null>(null);
+    // const [postList, setPostList] = useState<Array<Post>>([]); // useState<Post[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const blogList = useAppSelector((state) => state.blogs.list);
+    const isLoading = useAppSelector((state) => state.blogs.isLoading);
+    const dispatch = useDispatch();
+    // const isLoading = useAppSelector((state) => state.blogs.isLoading);
+    // const [searchParams, setSearchParams] = useSearchParams();
 
     const displayedPosts = useMemo(() => {
 
-        return postList.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage);
-    }, [currentPage, postList])
+        return blogList.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage);
+    }, [currentPage, blogList])
 
-    console.log(displayedPosts, 'displayedPosts');
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-        setSearchParams({ page: page.toString() });
+        // setSearchParams({ page: page.toString() });
 
     }
     // const postList = useLoaderData(); 
     const totalPages = useMemo(() => {
-        if (!postList.length) return 0;
+        if (!blogList.length) return 0;
 
-        return Math.ceil(postList.length / POSTS_PER_PAGE);
-    }, [postList])
+        return Math.ceil(blogList.length / POSTS_PER_PAGE);
+    }, [blogList])
 
-    const loadPostList = async (): Promise<Post[] | null> => {
-        try {
-            setIsLoading(true);
-            const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-            const postList = await response.json();
+    // const loadPostList = async (): Promise<Post[] | null> => {
+    //     try {
+    //         setIsLoading(true);
+    //         const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+    //         const postList = await response.json();
 
-            setPostList(postList);
+    //         setPostList(postList);
 
-            return postList;
-        } catch (error) {
-            setError('Некорректный путь к серверу');
+    //         return postList;
+    //     } catch (error) {
+    //         setError('Некорректный путь к серверу');
 
-            return null;
-        } finally {
-            setIsLoading(false);
-        }
-    }
+    //         return null;
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // }
 
-    // Когда я перехожу на страницу blogList, я хочу получить список постов из API
+    // // Когда я перехожу на страницу blogList, я хочу получить список постов из API
     useEffect(() => {
-        loadPostList();
+        dispatch(fetchBlogList(10));
     }, [])
 
 
     return <>
         <div className={styles.blogList}>
-            {isLoading ? <div>Loading...</div> :
-                error ? <div>Error: {error}</div> :
-                    displayedPosts.map(blog => (
-                        <BlogCard id={blog.id} className={styles.blogCard} key={blog.id} title={blog.title} description={blog.body} />
-                    ))}
+            {isLoading && <div>Loading...</div>}
+
+            {displayedPosts.map(blog => (
+                <BlogCard id={blog.id} className={styles.blogCard} key={blog.id} title={blog.title} description={blog.content} />
+            ))}
         </div>
         <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
     </>;

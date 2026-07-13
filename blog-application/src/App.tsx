@@ -1,33 +1,13 @@
 import { useEffect } from 'react';
 import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router';
 
 export type TAppPages = 'BlogList' | 'SignIn' | 'SignUp';
 
-const Comp2 = ({ currentPage }) => {
-  return (
-    <div>
-      <span>{currentPage}</span>
-      <Comp3 currentPage={currentPage} />
-    </div>
-  );
-};
-
-const Comp3 = ({ currentPage }) => {
-  return <Comp4 currentPage={currentPage} />;
-};
-
-const Comp4 = ({ currentPage }) => {
-  return <Comp5 currentPage={currentPage} />;
-};
-
-const Comp5 = ({ currentPage }) => {
-  return <div>{currentPage}</div>;
-};
-
 function App() {
   const dispatch = useDispatch();
-  const balance = useSelector((state) => state.balance);
+  // const balance = useSelector((state) => state.balance);
 
   useEffect(() => {
     dispatch({ type: 'WITHDRAW_MONEY', payload: 100 });
@@ -37,8 +17,7 @@ function App() {
     <div id="app">
 
       <h1>APPLICATION</h1>
-      {balance}
-      <Comp2 currentPage={currentPage} />
+      <Link to="/blogs">BlogList</Link>
     </div>
   )
 }

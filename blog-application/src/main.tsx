@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client';
@@ -11,30 +10,7 @@ import { BlogList } from './pages/BlogList/index.ts';
 import { NotFound } from './pages/NotFound/NotFound.tsx';
 import App from './App.tsx'
 import { MainLayout } from './layouts/MainLayout/MainLayout.tsx';
-
-const initialState = {
-  balance: 0,
-}
-
-// action - { type: 'WITHDRAW_MONEY', payload: 100 }
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'WITHDRAW_MONEY':
-      return {
-        balance: state.balance - action.payload
-      }
-    case 'DEPOSIT_MONEY':
-      return {
-        balance: state.balance + action.payload
-      }
-    default:
-      return state;
-  }
-
-}
-
-const store = createStore(reducer);
+import { store } from './store';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
