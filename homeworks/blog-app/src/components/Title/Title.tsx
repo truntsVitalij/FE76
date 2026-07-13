@@ -1,14 +1,13 @@
-import { type FC,type  ReactNode } from 'react';
+import { type PropsWithChildren } from 'react';
 
-type TTitlelevel = 1 | 2 | 3 | 4 | 5 | 6;
+type TTitleLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface ITitleProps {
-  level: TTitlelevel;
-  children: ReactNode;
+  level: TTitleLevel;
   className?: string;
 }
 
-const Title: FC<ITitleProps> = ({ level, children, className = '' }) => {
+const Title = ({ level, children, className = '' }: PropsWithChildren<ITitleProps>) => {
   switch (level) {
     case 1:
       return <h1 className={className}>{children}</h1>;
@@ -23,7 +22,7 @@ const Title: FC<ITitleProps> = ({ level, children, className = '' }) => {
     case 6:
       return <h6 className={className}>{children}</h6>;
     default:
-      return <h2 className={className}>{children}</h2>; 
+      return <h2 className={className}>{children}</h2>;
   }
 };
 
