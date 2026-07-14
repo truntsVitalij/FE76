@@ -1,35 +1,49 @@
-import React from 'react';
-import type { FC, PropsWithChildren } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+import { useState } from 'react';
 import { Login } from './pages/Login';
+import { Register } from './pages/Register';
 import { SuccessLogin } from './pages/SuccessLogin';
 import { Blog } from './pages/blog';
 
-const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-  if (!localStorage.getItem('isLoggedIn')) return <Navigate to="/login" replace />;
-  return <>{children}</>;
-};
+interface User {
+  email: string;
+  password: string;
+}
 
-const GuestRoute: FC<PropsWithChildren> = ({ children }) => {
-  if (localStorage.getItem('isLoggedIn')) return <Navigate to="/blog" replace />;
+function App() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-};
+  const handleRegister = (email: string, password: string) => {
+    setUsers(prev => [...prev, { email, password }]);
+  };
 
-const App: React.FC = () => {
+  const handleLogin = (email: string, password: string): boolean => {
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user || (email === 'admin@example.com' && password === '123456')) {
+      setIsLoggedIn(true);
+      return true;
+    }
+    return false;
+  };
+
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<GuestRoute><Navigate to="/login" replace /></GuestRoute>} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/register" element={<Register onRegister={handleRegister} />} />
           <Route path="/success" element={<SuccessLogin />} />
           <Route path="/blog" element={
-            <ProtectedRoute><Blog /></ProtectedRoute>
+            isLoggedIn ? <Blog /> : <Navigate to="/login" replace />
           } />
         </Routes>
       </Layout>
     </BrowserRouter>
   );
-};
+}
+
 export default App;

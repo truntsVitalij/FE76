@@ -1,9 +1,13 @@
 import { type FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { SignInForm } from '../../components/SignInForm';
 import styles from './Login.module.css';
 
-export const Login: FC = () => {
+interface LoginProps {
+  onLogin: (email: string, password: string) => boolean;
+}
+
+export const Login: FC<LoginProps> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,18 +16,23 @@ export const Login: FC = () => {
   const handleSubmit = () => {
     setError('');
 
-    if (email !== 'admin@example.com' || password !== '123456') {
-      setError('Wrong email or password');
+    if (!email || !password) {
+      setError('Email and password are required');
       return;
     }
 
-    localStorage.setItem('isLoggedIn', 'true');
-    navigate('/success');
+    const success = onLogin(email, password);
+
+    if (success) {
+      navigate('/blog');
+    } else {
+      setError('Wrong email or password');
+    }
   };
 
   return (
-    <>
-      <a className={styles.backLink}>← Back</a>
+    <div className={styles.container}>
+      <Link to="/register" className={styles.backLink}>← Back</Link>
       <h1 className={styles.title}>Sign In</h1>
       <div className={styles.card}>
         <SignInForm
@@ -35,9 +44,10 @@ export const Login: FC = () => {
           onSubmit={handleSubmit}
         />
         <p className={styles.footerText}>
-          Don't have an account? <span>Sign Up</span>
+          Don't have an account?{' '}
+          <Link to="/register">Sign Up</Link>
         </p>
       </div>
-    </>
+    </div>
   );
 };
