@@ -1,5 +1,5 @@
 export interface RegisterProps {
-  onRegister: (email: string, password: string) => void;
+  onRegister: (email: string, password: string) => boolean;
 }
 export interface FormData {
   email: string;

@@ -102,8 +102,11 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
     
     if (!validateForm()) return;
 
-    onRegister(formData.email, formData.password);
-    navigate('/success', { state: { email: formData.email } });
+    const success = onRegister(formData.email, formData.password);
+    
+    if (success) {
+      navigate('/success', { state: { email: formData.email } });
+    }
   };
 
   return (

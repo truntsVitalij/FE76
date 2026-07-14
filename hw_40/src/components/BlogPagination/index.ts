@@ -1,1 +1,0 @@
-export { BlogPagination } from './BlogPagination'

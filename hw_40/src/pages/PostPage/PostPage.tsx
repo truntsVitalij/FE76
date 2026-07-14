@@ -1,11 +1,17 @@
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { PostArticle } from '../../pages/blog/components/PostArticle';
+import { Link } from 'react-router-dom';
+import { PostCard } from '../../components/PostCard/PostCard';
 import type { Post } from '../blog/types';
 
 interface PostPageProps {
   posts: Post[];
+  favoriteIds: number[];
+  likedIds: number[];
+  dislikedIds: number[];
+  onToggleFavorite: (postId: number) => void;
+  onToggleLike: (postId: number) => void;
+  onToggleDislike: (postId: number) => void;
 }
 
 const Container = styled.div`
@@ -25,22 +31,23 @@ const BackLink = styled(Link)`
   }
 `;
 
-const NotFound = styled.div`
-  text-align: center;
-  padding: 3rem;
-`;
-
-export const PostPage: React.FC<PostPageProps> = ({ posts }) => {
+export const PostPage: React.FC<PostPageProps> = ({
+  posts,
+  favoriteIds,
+  likedIds,
+  dislikedIds,
+  onToggleFavorite,
+  onToggleLike,
+  onToggleDislike
+}) => {
   const { id } = useParams<{ id: string }>();
   const post = posts.find(p => p.id === Number(id));
 
   if (!post) {
     return (
       <Container>
-        <NotFound>
-          <h1>Post not found</h1>
-          <BackLink to="/blog">← Back to blog</BackLink>
-        </NotFound>
+        <h1>Post not found</h1>
+        <BackLink to="/blog">← Back to blog</BackLink>
       </Container>
     );
   }
@@ -48,7 +55,16 @@ export const PostPage: React.FC<PostPageProps> = ({ posts }) => {
   return (
     <Container>
       <BackLink to="/blog">← Back to blog</BackLink>
-      <PostArticle post={post} />
+      <PostCard
+        post={post}
+        size="full"
+        isFavorite={favoriteIds.includes(post.id)}
+        isLiked={likedIds.includes(post.id)}
+        isDisliked={dislikedIds.includes(post.id)}
+        onToggleFavorite={onToggleFavorite}
+        onToggleLike={onToggleLike}
+        onToggleDislike={onToggleDislike}
+      />
     </Container>
   );
 };
