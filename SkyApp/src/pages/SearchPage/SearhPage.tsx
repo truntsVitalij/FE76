@@ -11,7 +11,7 @@ export const SearchPage: FC = () => {
   const filteredPosts = posts.filter(
     (post) =>
       post.title.toLowerCase().includes(query) ||
-      post.description.toLowerCase().includes(query),
+      (post.description ?? "").toLowerCase().includes(query),
   );
   return (
     <main className={styles.searchPage}>

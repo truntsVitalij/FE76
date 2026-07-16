@@ -5,13 +5,13 @@
     flex-direction:column;
     gap:40px;
 
-    height: 700px;
-    overflow: auto;
+    /* height: 900px;
+    overflow: auto; */
 }
 
 .homePage__firstRow{
     display:grid;
-    grid-template-columns:1fr 352px;
+    grid-template-columns:1fr 320px;
     gap:32px;
 }
 
@@ -29,7 +29,7 @@
 
 .homePage__row{
     display: grid;
-    grid-template-columns: 1fr 1fr 352px;
+    grid-template-columns: 1fr 1fr 320px;
     gap: 32px;
     align-items: start;
 

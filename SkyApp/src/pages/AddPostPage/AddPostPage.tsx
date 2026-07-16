@@ -3,7 +3,7 @@ import React, { useState, type FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Button } from "../../shared/ui/Button";
 
 import styles from "./AddPostPage.module.css";
 
@@ -32,37 +32,34 @@ const AddPostPage: FC = () => {
   return (
     <Container>
       {/* <AuthLayout title="Add post" dark={isDark}> */}
-        <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h1> Add Post</h1>
+        <Input label="Title" type="text" value={title} onChange={setTitle} />
 
-            <h1> Add Post</h1>
-          <Input label="Title" type="text" value={title} onChange={setTitle} />
-
-          <div className={styles.block}>
-            <Input
-              label="Category"
-              type="text"
-              value={category}
-              onChange={setCategory}
-            />
-
-            <Input
-              label="Image"
-              type="text"
-              value={image}
-              onChange={setImage}
-            />
-            <Button type="button" variant="secondary" > Upload new</Button>
-          </div>
-
+        <div className={styles.block}>
           <Input
-            label="Description"
+            label="Category"
             type="text"
-            value={description}
-            onChange={setDescription}
+            value={category}
+            onChange={setCategory}
           />
-          <Input label="Text" type="text" value={text} onChange={setText} />
 
-<div className={styles.btnContainer}>
+          <Input label="Image" type="text" value={image} onChange={setImage} />
+          <Button type="button" variant="secondary">
+            {" "}
+            Upload new
+          </Button>
+        </div>
+
+        <Input
+          label="Description"
+          type="text"
+          value={description}
+          onChange={setDescription}
+        />
+        <Input label="Text" type="text" value={text} onChange={setText} />
+
+        <div className={styles.btnContainer}>
           <Button
             className={styles.btnDel}
             variant="secondary2"
@@ -84,9 +81,9 @@ const AddPostPage: FC = () => {
             <Button className={styles.btnCancel} type="submit">
               Add post
             </Button>
-            </div>
           </div>
-        </form>
+        </div>
+      </form>
       {/* </AuthLayout> */}
     </Container>
   );

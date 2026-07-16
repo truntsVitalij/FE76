@@ -1,5 +1,5 @@
 import { type FC, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Header.module.css";
 import { Search, Menu, X } from "lucide-react";
@@ -22,6 +22,20 @@ export const Header: FC = () => {
     }
   }, [isDark]);
 
+  // Search
+  const [query, setQuery] = useState("");
+const navigate = useNavigate();
+
+const handleSearch = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const value = query.trim();
+  if (value) {
+    navigate(`/search?q=${encodeURIComponent(value)}`);
+    setSearchOpen(false);
+  }
+};
+
 
   return (
     <header className={styles.header}>
@@ -37,21 +51,26 @@ export const Header: FC = () => {
         {menuOpen ? <X size={20} /> : <Menu size={20} />} {/* //lucide-react */}
       </button>
 
-      <div className={`${styles.searchBox} ${searchOpen ? styles.active : ""}`}>
+      <form className={`${styles.searchBox} ${searchOpen ? styles.active : ""}`}
+      onSubmit={handleSearch}>
         <input
           className={styles.search}
           type="search"
+          name="search"
           placeholder="Search..."
+          value={query}
+          onChange={(e) => setQuery (e.target.value)}
         />
 
       <button
+      type="submit"
         className={styles.iconButton}
         onClick={() => setSearchOpen((prev) => !prev)}
         aria-label="Search"
       >
         <Search size={20} /> {/* //lucide-react */}
       </button>
-      </div>
+      </form>
 
       <ToggleTheme isDark={isDark} onToggle={() => setIsDark(!isDark)} />
 

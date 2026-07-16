@@ -4,7 +4,7 @@ import { AuthLayout } from "../../components/Layouts/AuthLayout";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Button } from "../../shared/ui/Button";
 
 import styles from "./ResetPasswordNextPage.module.css";
 

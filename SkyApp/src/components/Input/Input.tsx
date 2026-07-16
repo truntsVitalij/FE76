@@ -24,14 +24,14 @@ export const Input: FC<InputProps> = ({
     <label className={styles.label}>
       <span> {label} </span>
 
-      <input
+    </label>
+    <input
         className={styles.input}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
-    </label>
     </div>
   );
 };

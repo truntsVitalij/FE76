@@ -21,6 +21,7 @@
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   overflow: hidden;
   z-index: 100;
+  padding: 20px 5px 30px;
 }
 .dropdown a {
   padding: 12px 16px;

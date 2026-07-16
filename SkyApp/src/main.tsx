@@ -1,6 +1,9 @@
 import { StrictMode } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, } from "react-router-dom";
 import { createRoot } from 'react-dom/client'
+
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 import App from "./App";
 
@@ -20,6 +23,7 @@ import { SearchPage } from "./pages/SearchPage/SearhPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -44,6 +48,8 @@ createRoot(document.getElementById("root")!).render(
       </Routes>
       
     </BrowserRouter>
+
+    </Provider>
   </StrictMode>,
 );
 
@@ -66,7 +72,7 @@ createRoot(document.getElementById("root")!).render(
 //         <Route path="/" element={<App />}>
 //         <Route path='blog' element={<Blog />} /> 
 //         <Route path='sign-in' element={<LoginPage />} /> 
-//         <Route path='sing-up' element={<RegisterPage />} /> 
+//         <Route path='sign-up' element={<RegisterPage />} /> 
 
 //           {/* когда в браузере будет использоваться путь "/", пойдет рисовать эт элемент {<App />} */}
           
