@@ -5,6 +5,7 @@ interface SidebarProps {
   isOpen: boolean;
   isLoggedIn: boolean;
   userEmail: string;
+  userName: string;
   count?: number;
   onLogout?: () => void;
 }
@@ -13,19 +14,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isOpen,
   isLoggedIn,
   userEmail,
+  userName,
   count,
   onLogout
 }) => {
+  const initials = userName
+    ? userName.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase()
+    : userEmail
+      ? userEmail.substring(0, 2).toUpperCase()
+      : '??';
+
   return (
     <div className={`${styles.sidebarDropdown} ${isOpen ? styles.sidebarOpen : ''}`}>
       {isLoggedIn ? (
         <>
           <div className={styles.sidebarUserInfo}>
             <div className={styles.sidebarAvatar}>
-              {userEmail ? userEmail.substring(0, 2).toUpperCase() : '??'}
+              {initials}
             </div>
             <div className={styles.sidebarUserText}>
-              <span className={styles.sidebarUserName}>{userEmail}</span>
+              <span className={styles.sidebarUserName}>{userName || userEmail}</span>
             </div>
           </div>
 
@@ -35,6 +43,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
             <div className={`${styles.sidebarLink} ${styles.linkDefault}`}>
               Add post
+            </div>
+            <div className={`${styles.sidebarLink} ${styles.linkDefault}`}>
+              Profile
             </div>
           </div>
 

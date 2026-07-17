@@ -11,18 +11,6 @@
   transition: background-color 0.2s ease;
 }
 
-.navBtn:hover {
-  background-color: var(--primary-medium);
-}
-
-.navBtnActive {
-  background-color: var(--primary-dark);
-}
-
-.navBtnActive:hover {
-  background-color: var(--primary-dark);
-}
-
 .icon {
   width: 20px;
   height: 20px;

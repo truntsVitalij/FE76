@@ -1,11 +1,52 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.container {
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
 }
+
+.firstRow {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.secondRow {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.largeColumn {
+  flex: 2;
+  display: flex;
+}
+
+.largeColumn > * {
+  width: 100%;
+}
+
+.mediumColumn {
+  flex: 1;
+  display: flex;
+}
+
+.mediumColumn > * {
+  width: 100%;
+}
+
+.smallColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.smallColumn > * {
+  width: 100%;
+  flex: 1;
+}
+
 .empty {
-  grid-column: 1 / -1;
   text-align: center;
   color: #6b7280;
   padding: 2rem;
 }
+

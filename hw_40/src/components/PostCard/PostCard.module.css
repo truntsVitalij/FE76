@@ -5,11 +5,14 @@
   border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .wrapper {
   display: flex;
   flex: 1;
+  min-height: 0;
 }
 
 .textBlock {
@@ -34,7 +37,6 @@
 
 .card.l .image {
   width: 50%;
-  height: 100%;
   min-height: 300px;
   object-fit: cover;
 }
@@ -43,32 +45,38 @@
   font-size: 1.25rem;
 }
 
-.card.m .wrapper {
+.card.m {
+  display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
-.card.m .textBlock {
-  padding: 1.25rem;
+.card.m .wrapper {
+  flex-direction: column;
+  flex: 1;
 }
 
 .card.m .image {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  order: -1;
+  flex-shrink: 0;
 }
 
-.card.m .cardTitle {
-  font-size: 1.1rem;
+.card.m .textBlock {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.card.s {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card.s .wrapper {
   flex-direction: row;
-}
-
-.card.s .textBlock {
   flex: 1;
-  padding: 0.75rem;
 }
 
 .card.s .image {
@@ -78,23 +86,59 @@
   flex-shrink: 0;
 }
 
+.card.s .textBlock {
+  flex: 1;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.card.s .description {
+  display: none;
+}
+
 .card.s .cardTitle {
   font-size: 0.8rem;
-  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-clamp: 2;
 }
 
-.card.s .actions {
-  border-top: none;
-  padding: 0.25rem 0.75rem 0.75rem;
+.card.full .wrapper {
+  flex-direction: column;
 }
 
-.image {
+.card.full .image {
   width: 100%;
-  object-fit: cover;
+  height: 400px;
+  order: -1;
 }
 
-.content {
-  padding: 1rem;
+.card.full .textBlock {
+  padding: 1.5rem;
+}
+
+.card.full .meta {
+  font-size: 0.875rem;
+}
+
+.card.full .cardTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+}
+
+.card.full .description {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.card.full .actions {
+  padding: 0 1.5rem 1.5rem;
+  border-top: none;
 }
 
 .meta {
@@ -118,6 +162,7 @@
   align-items: center;
   border-top: 1px solid #f3f4f6;
   padding: 0.75rem 1rem;
+  flex-shrink: 0;
 }
 
 .actionIcons {
@@ -163,40 +208,4 @@
 
 .favoriteActive {
   color: #1a237e;
-}
-
-.card.full .wrapper {
-  flex-direction: column;
-}
-
-.card.full .image {
-  width: 100%;
-  height: 400px;
-  order: -1;
-}
-
-.card.full .textBlock {
-  padding: 1.5rem;
-}
-
-.card.full .meta {
-  font-size: 0.875rem;
-}
-
-.card.full .cardTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0.5rem 0 1rem;
-}
-
-.card.full .description {
-  font-size: 1rem;
-  color: #4b5563;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.card.full .actions {
-  padding: 0 1.5rem 1.5rem;
-  border-top: none;
 }
