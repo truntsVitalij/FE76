@@ -1,5 +1,4 @@
 import { type FC, useState, useMemo, useEffect } from 'react';
-import { Header } from '../../components/Header';
 import { Tabs } from '../../components/Tabs';
 import { Grid } from '../../components/Grid';
 import { Pagination } from '../../components/Pagination';
@@ -16,22 +15,21 @@ interface BlogProps {
   onToggleFavorite: (postId: number) => void;
   onToggleLike: (postId: number) => void;
   onToggleDislike: (postId: number) => void;
+  searchQuery: string;
 }
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 7;
 
 export const Blog: FC<BlogProps> = ({
-  userEmail = '',
-  onLogout,
   favoriteIds,
   likedIds,
   dislikedIds,
   onToggleFavorite,
   onToggleLike,
-  onToggleDislike
+  onToggleDislike,
+  searchQuery
 }) => {
   const [activeTab, setActiveTab] = useState<TabType>('All');
-  const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -40,11 +38,6 @@ export const Blog: FC<BlogProps> = ({
 
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
-    setCurrentPage(1);
-  };
-
-  const handleSearchChange = (query: string) => {
-    setSearchQuery(query);
     setCurrentPage(1);
   };
 
@@ -82,14 +75,6 @@ export const Blog: FC<BlogProps> = ({
 
   return (
     <div className={styles.container}>
-      <Header
-        isLoggedIn={true}
-        userEmail={userEmail}
-        onLogout={onLogout}
-        count={displayedPosts.length}
-        searchQuery={searchQuery}
-        onSearchChange={handleSearchChange}
-      />
       <Tabs activeTab={activeTab} onTabChange={handleTabChange} />
       <Grid 
         posts={paginatedPosts} 

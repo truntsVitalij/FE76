@@ -30,7 +30,7 @@ export const Grid: FC<GridProps> = ({
     );
   }
 
-  const renderPostCard = (post: Post, size: 'l' | 'm' | 's') => (
+  const renderPostCard = (post: Post, size: 's' | 'm' | 'l') => (
     <PostCard 
       key={post.id}
       post={post} 
@@ -44,46 +44,41 @@ export const Grid: FC<GridProps> = ({
     />
   );
 
-  if (posts.length === 1) {
-    return (
-      <div className={styles.grid}>
-        <div className={styles.bigBlock}>
-          {renderPostCard(posts[0], 'l')}
-        </div>
-      </div>
-    );
-  }
-
-  if (posts.length <= 3) {
-    return (
-      <div className={styles.grid}>
-        <div className={styles.bigBlock}>
-          {renderPostCard(posts[0], 'l')}
-        </div>
-        <div className={styles.sideColumn}>
-          {posts.slice(1).map(post => renderPostCard(post, 's'))}
-        </div>
-      </div>
-    );
-  }
-
-  const bigPost = posts[0];
-  const mediumPosts = posts.slice(3, 5);
-  const smallPosts = posts.slice(1, 3).concat(posts.slice(5));
+  const firstRowPosts = posts.slice(0, 3);
+  const secondRowPosts = posts.slice(3, 7);
 
   return (
-    <div className={styles.grid}>
-      <div className={styles.bigBlock}>
-        {bigPost && renderPostCard(bigPost, 'l')}
-      </div>
-      
-      <div className={styles.mediumRow}>
-        {mediumPosts.map(post => renderPostCard(post, 'm'))}
-      </div>
-      
-      <div className={styles.sideColumn}>
-        {smallPosts.map(post => renderPostCard(post, 's'))}
-      </div>
+    <div className={styles.container}>
+      {firstRowPosts.length > 0 && (
+        <div className={styles.firstRow}>
+          <div className={styles.largeColumn}>
+            {firstRowPosts[0] && renderPostCard(firstRowPosts[0], 'l')}
+          </div>
+          <div className={styles.smallColumn}>
+            {firstRowPosts[1] && renderPostCard(firstRowPosts[1], 's')}
+            {firstRowPosts[2] && renderPostCard(firstRowPosts[2], 's')}
+          </div>
+        </div>
+      )}
+
+      {secondRowPosts.length > 0 && (
+        <div className={styles.secondRow}>
+          <div className={styles.mediumColumn}>
+            {secondRowPosts[0] && renderPostCard(secondRowPosts[0], 'm')}
+          </div>
+          <div className={styles.mediumColumn}>
+            {secondRowPosts[1] && renderPostCard(secondRowPosts[1], 'm')}
+          </div>
+          <div className={styles.smallColumn}>
+            {secondRowPosts[2] && renderPostCard(secondRowPosts[2], 's')}
+            {secondRowPosts[3] ? (
+              renderPostCard(secondRowPosts[3], 's')
+            ) : (
+              <div className={styles.emptySlot} />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

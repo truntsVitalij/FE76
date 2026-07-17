@@ -57,6 +57,7 @@ const StyledLink = styled(Link)`
 
 export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
   const [formData, setFormData] = useState<FormData>({
+    name: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -76,6 +77,10 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
 
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
@@ -102,10 +107,10 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
     
     if (!validateForm()) return;
 
-    const success = onRegister(formData.email, formData.password);
+    const success = onRegister(formData.name, formData.email, formData.password);
     
     if (success) {
-      navigate('/success', { state: { email: formData.email } });
+      navigate('/success', { state: { email: formData.email, name: formData.name } });
     }
   };
 
@@ -115,6 +120,15 @@ export const Register: React.FC<RegisterProps> = ({ onRegister }) => {
       <Title>Sign Up</Title>
       <Card>
         <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            error={errors.name}
+          />
+
           <Input
             type="email"
             name="email"
