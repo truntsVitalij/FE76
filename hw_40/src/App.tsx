@@ -92,17 +92,7 @@ function App() {
           } />
           <Route path="/blog" element={
             isLoggedIn ? (
-              <Blog
-                userEmail={currentUser}
-                onLogout={handleLogout}
-                favoriteIds={favoriteIds}
-                likedIds={likedIds}
-                dislikedIds={dislikedIds}
-                onToggleFavorite={handleToggleFavorite}
-                onToggleLike={handleToggleLike}
-                onToggleDislike={handleToggleDislike}
-                searchQuery={searchQuery}
-              />
+              <Blog searchQuery = {searchQuery} />
             ) : <Navigate to="/login" replace />
           } />
           <Route path="/post/:id" element={
