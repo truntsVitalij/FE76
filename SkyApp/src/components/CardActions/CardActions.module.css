@@ -1,0 +1,40 @@
+.cardActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    border-top:1px solid #E8E8E8;
+    padding-top:24px;
+}
+
+.cardActions__left,
+.cardActions__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cardActions__button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    color: #313037;
+}
+
+.cardActions__button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.cardActions__button:hover {
+    opacity: 0.7;
+}
+
+.cardActions__button:active {
+    transform: scale(0.95);
+}

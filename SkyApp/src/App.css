@@ -1,0 +1,11 @@
+:root {
+    --brand-color: rgba(42, 10, 223, 0.521);
+    --header-text-color: rgb(255, 255, 255);
+}
+
+#app{
+    height: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
