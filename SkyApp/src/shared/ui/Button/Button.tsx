@@ -5,7 +5,7 @@ interface IButtonProps extends PropsWithChildren {
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
   className?: string;
-  variant?: "primary" | "secondary" | "secondary2";
+  variant?: "primary" | "secondary" | "secondary2" | "tab";
   disabled?: boolean;
   fullWidth?: boolean;
 }

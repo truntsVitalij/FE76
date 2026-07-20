@@ -52,3 +52,19 @@ border-color: var(--btn-color-secondary-hover);
 .fullWidth {
     width: 100%;
 }
+
+.tab {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 14px;
+  color: var(--background-colors-gray);
+}
+.tab:hover {
+  color: var(--background-colors-gray);
+  background-color: none;
+}
+
+.active {
+  color: var(--text-color);
+}

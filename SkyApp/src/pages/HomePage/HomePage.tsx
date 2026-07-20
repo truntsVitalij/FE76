@@ -1,21 +1,46 @@
 import { posts } from "../../data/Posts";
 
-// import { HeroCard } from "../../components/HeroCard/HeroCard";
-// import { MediumCard } from "../../components/MediumCard/MediumCard";
-// import { SmallCard } from "../../components/SmallCard/SmallCard";
-
 import styles from "./HomePage.module.css";
 import { Pagination } from "../../components/Pagination";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Card } from "../../components/CardHMS/CardHMS";
+import { Tabs } from "../../components/Tabs";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 
 const ARTICLE_PER_PAGE = 8;
 
 export const HomePage = () => {
-  const gridPosts = posts.slice(4); // Убираем первые 4 поста, которые уже показаны сверху
-  const rows = []; // Разбиваем оставшиеся посты на строки по 3 карточки
+  const basePosts = useMemo(() => posts.slice(4), []);
 
+  // -------Tabs-----------------
+  const [activeTab, setActiveTab] = useState<
+  "all" | "favorites" | "popular" > ("all")
+
+const favorites = useSelector(
+  (state: RootState) => state.posts.favorites
+  );
+
+const filteredPosts = useMemo(() => {
+  switch (activeTab) {
+    case "favorites":
+      return basePosts.filter(post =>
+        favorites.includes(post.id)
+      );
+
+    case "popular":
+      return basePosts.filter(post => post.likes >= 100);
+
+    default:
+      return basePosts;
+  }
+}, [activeTab, favorites]);
+  // const filteredPosts = posts.slice(4); // Убираем первые 4 поста, которые уже показаны сверху
+
+  // const rows: typeof displayedPosts = []; // Разбиваем оставшиеся посты на строки по 3 карточки
+
+  
   // -------Pagination-----------------
   const [searchParams, setSearchParams] = useSearchParams(); //возвтрат на текущую стр, а не на 1
   const [currentPage, setCurrentPage] = useState(
@@ -30,23 +55,39 @@ export const HomePage = () => {
   // const[gridPosts, setGridPosts] = useState<Array<Post>> ([]); //useState<Post[]>([])
 
   const displayedPosts = useMemo(() => {
-    return gridPosts.slice(
+    return filteredPosts.slice(
       ARTICLE_PER_PAGE * (currentPage - 1),
       ARTICLE_PER_PAGE * currentPage,
     );
-  }, [currentPage, gridPosts]);
+  }, [currentPage, filteredPosts]);
 
   const totalPages = useMemo(() => {
-    if (!gridPosts.length) return 0;
-    return Math.ceil(gridPosts.length / ARTICLE_PER_PAGE);
-  }, [gridPosts]);
+    if (!filteredPosts.length) return 0;
+    return Math.ceil(filteredPosts.length / ARTICLE_PER_PAGE);
+  }, [filteredPosts]);
 
-  for (let i = 0; i < gridPosts.length; i += 4) {
-    rows.push(gridPosts.slice(i, i + 4));
+  // for (let i = 0; i < displayedPosts.length; i += 4) {
+  //   rows.push(displayedPosts.slice(i, i + 4));
+  // }
+  const rows = useMemo(() => {
+  const result: typeof displayedPosts[] = [];
+
+  for (let i = 0; i < displayedPosts.length; i += 4) {
+    result.push(displayedPosts.slice(i, i + 4));
   }
+
+  return result;
+}, [displayedPosts]);
+  
 
   return (
     <main className={styles.homePage}>
+
+       <h1 className={styles.title}>Blog</h1>
+
+      <Tabs activeTab={activeTab}
+      onChange={setActiveTab}/>
+
       <section className={styles.homePage__firstRow}>
         <Card post={posts[0]} size="hero" />
         {/* <Card post={posts[1]} size="small" /> */}

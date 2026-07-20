@@ -31,6 +31,7 @@ export const previewReducer = ( //Создаем f
       return {
         ...state,
         isOpen: false,
+        currentPostId: null //после закрытия попапа не останется выбранного поста.
       };
 
     case NEXT_PREVIEW: {

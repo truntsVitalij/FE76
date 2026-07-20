@@ -4,10 +4,10 @@ export interface PreviewState {
   currentPostId: number | null; // 0-когда попап закрыт, никакая картинка не выбрана.
 }
 
-export const OPEN_PREVIEW = "OPEN_PREVIEW"; // константы Action
-export const CLOSE_PREVIEW = "CLOSE_PREVIEW";
-export const NEXT_PREVIEW = "NEXT_PREVIEW";
-export const PREV_PREVIEW = "PREV_PREVIEW";
+export const OPEN_PREVIEW = "preview/OPEN_PREVIEW"; // константы Action
+export const CLOSE_PREVIEW = "preview/CLOSE_PREVIEW";
+export const NEXT_PREVIEW = "preview/NEXT_PREVIEW";
+export const PREV_PREVIEW = "preview/PREV_PREVIEW";
 
 interface OpenPreviewAction {  //Action для открытия
   type: typeof OPEN_PREVIEW;   // typeof - возьми тип этой константы.

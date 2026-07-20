@@ -33,8 +33,10 @@
 
 .cardActions__button:hover {
     opacity: 0.7;
+    color:var(--btn-colorText-secondary2-hover)
 }
 
 .cardActions__button:active {
     transform: scale(0.95);
+    color: var(--btn-color-primary-hover);
 }

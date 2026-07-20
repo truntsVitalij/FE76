@@ -10,14 +10,14 @@ export const openPreview = (id: number) => ({
   payload: id,
 });
 
-export const ClosePreview = () => ({
+export const closePreview = () => ({
   type: CLOSE_PREVIEW,
 });
 
-export const NextPreview = () => ({
+export const nextPreview = () => ({
   type: NEXT_PREVIEW,
 });
 
-export const PrevPreview = () => ({
+export const prevPreview = () => ({
   type: PREV_PREVIEW,
 });

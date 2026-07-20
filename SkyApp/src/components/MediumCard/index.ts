@@ -1,1 +1,0 @@
-export {MediumCard } from "./MediumCard"

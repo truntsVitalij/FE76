@@ -1,10 +1,7 @@
-import { createStore } from "redux";
-import { previewReducer } from "./reducers/previewReduser";
-export const store = createStore(previewReducer);    //хранилище
+import {createStore } from "redux";
+import {rootReducer} from "./reducers/index"
+
+export const store = createStore(rootReducer);    //хранилище
+
 export type RootState = ReturnType <typeof store.getState>;
-// export default store;
 
-
-// import { PreviewAction } from "./types/imgTypes";
-
-// export default {PreviewAction}
