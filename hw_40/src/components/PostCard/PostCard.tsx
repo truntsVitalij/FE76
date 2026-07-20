@@ -49,6 +49,14 @@ export const PostCard: FC<PostCardProps> = ({
   return (
     <article className={`${styles.card} ${styles[size]}`}>
       <div className={styles.wrapper}>
+        {size === 'm' && (
+          <img 
+            src={post.image} 
+            alt={post.title} 
+            className={styles.image} 
+            onClick={handleCardClick}
+          />
+        )}
         <div className={styles.textBlock} onClick={handleCardClick}>
           <div className={styles.meta}>{post.date}</div>
           <h3 className={styles.cardTitle}>{post.title}</h3>
@@ -56,12 +64,14 @@ export const PostCard: FC<PostCardProps> = ({
             <p className={styles.description}>{post.description}</p>
           )}
         </div>
-        <img 
-          src={post.image} 
-          alt={post.title} 
-          className={styles.image} 
-          onClick={handleCardClick}
-        />
+        {size !== 'm' && (
+          <img 
+            src={post.image} 
+            alt={post.title} 
+            className={styles.image} 
+            onClick={handleCardClick}
+          />
+        )}
       </div>
       <div className={styles.actions}>
         <div className={styles.actionIcons}>

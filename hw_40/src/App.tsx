@@ -1,5 +1,6 @@
 import { Layout } from './components/Layout';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+import { useState } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -9,6 +10,7 @@ import { PostPage } from './pages/PostPage';
 import { ALL_POSTS } from './data/posts';
 
 interface User {
+  name: string;
   email: string;
   password: string;
 }
@@ -17,9 +19,11 @@ function App() {
   const [users, setUsers] = useLocalStorage<User[]>('registeredUsers', []);
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage<boolean>('isLoggedIn', false);
   const [currentUser, setCurrentUser] = useLocalStorage<string>('currentUser', '');
+  const [currentUserName, setCurrentUserName] = useLocalStorage<string>('currentUserName', '');
   const [favoriteIds, setFavoriteIds] = useLocalStorage<number[]>('favoriteIds', []);
   const [likedIds, setLikedIds] = useLocalStorage<number[]>('likedIds', []);
   const [dislikedIds, setDislikedIds] = useLocalStorage<number[]>('dislikedIds', []);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleToggleFavorite = (postId: number) => {
     setFavoriteIds(prev =>
@@ -41,13 +45,13 @@ function App() {
     setLikedIds(prev => prev.filter(id => id !== postId));
   };
 
-  const handleRegister = (email: string, password: string): boolean => {
+  const handleRegister = (name: string, email: string, password: string): boolean => {
     const userExists = users.find(u => u.email === email);
     if (userExists) {
       alert('User with this email already exists');
       return false;
     }
-    setUsers(prev => [...prev, { email, password }]);
+    setUsers(prev => [...prev, { name, email, password }]);
     return true;
   };
 
@@ -56,6 +60,7 @@ function App() {
     if (user || (email === 'admin@example.com' && password === '123456')) {
       setIsLoggedIn(true);
       setCurrentUser(email);
+      setCurrentUserName(user?.name || 'Admin');
       return true;
     }
     return false;
@@ -64,11 +69,19 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setCurrentUser('');
+    setCurrentUserName('');
   };
 
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout 
+        searchQuery={searchQuery} 
+        onSearchChange={setSearchQuery}
+        postCount={0}
+        onLogout={handleLogout}
+        userEmail={currentUser}
+        userName={currentUserName}
+      >
         <Routes>
           <Route path="/register" element={
             isLoggedIn ? <Navigate to="/blog" replace /> : <Register onRegister={handleRegister} />
@@ -79,16 +92,7 @@ function App() {
           } />
           <Route path="/blog" element={
             isLoggedIn ? (
-              <Blog
-                userEmail={currentUser}
-                onLogout={handleLogout}
-                favoriteIds={favoriteIds}
-                likedIds={likedIds}
-                dislikedIds={dislikedIds}
-                onToggleFavorite={handleToggleFavorite}
-                onToggleLike={handleToggleLike}
-                onToggleDislike={handleToggleDislike}
-              />
+              <Blog searchQuery = {searchQuery} />
             ) : <Navigate to="/login" replace />
           } />
           <Route path="/post/:id" element={

@@ -1,1 +1,0 @@
-export type SuccessLoginProps = Record<string, never>;
