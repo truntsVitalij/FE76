@@ -1,1 +1,0 @@
-export {SmallCard } from "./SmallCard"

@@ -1,10 +1,10 @@
 import React, { useState, type FC } from "react";
-import { AuthLayout } from "../../components/AuthLayout";
+import { AuthLayout } from "../../components/Layouts/AuthLayout";
 
 import { useNavigate } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Button } from "../../shared/ui/Button";
 
 import styles from "./ResetPasswordPage.module.css";
 

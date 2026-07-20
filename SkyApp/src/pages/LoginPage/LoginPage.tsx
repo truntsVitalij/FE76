@@ -1,10 +1,10 @@
 import React, { useState, type FC } from "react";
-import { AuthLayout } from "../../components/AuthLayout";
+import { AuthLayout } from "../../components/Layouts/AuthLayout";
 
 import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Button } from "../../shared/ui/Button";
 
 import styles from "./LoginPage.module.css";
 
@@ -23,7 +23,7 @@ const LoginPage: FC = () => {
   return (
     <Container>
       <AuthLayout
-        title="Sing In"
+        title="Sign In"
         dark={isDark}
         footerText="Don't have an account?"
         footerLinkText="Sign Up"
@@ -53,7 +53,7 @@ const LoginPage: FC = () => {
             </Link>{" "}
           </div>
 
-          <Button type="submit"> Sing In</Button>
+          <Button type="submit"> Sign In</Button>
         </form>
       </AuthLayout>
     </Container>
@@ -139,15 +139,15 @@ export default LoginPage;
 //             onClick={handleSignInClick}
 //           >
 //             {" "}
-//             Sing in{" "}
+//             Sign in{" "}
 //           </button>
 
 //           <p className={styles.text}>
 //             {" "}
 //             Don't have ac account ?
-//             {/* <button onClick={handleClick}> Sing Up </button> */}
+//             {/* <button onClick={handleClick}> Sign Up </button> */}
 //             <Link to="sign-up" className={styles.link}>
-//               Sing Up
+//               Sign Up
 //             </Link>
 //           </p>
 //         </form>

@@ -1,11 +1,68 @@
 :root {
-    --brand-color: rgba(42, 10, 223, 0.521);
+    font-family: "Inter", sans-serif;
+
+    --app-background:  #F3F3F3;
+    --app-text:  #313037;
+
     --header-text-color: rgb(255, 255, 255);
+    --text-color: #313037;
+
+    --system-color-primary: #2231AA;
+    --system-color-primary2: #5360CD;
+    --system-color-secondary: #313037;
+
+    --background-colors-gray: #8D8E97;
+    --background-colors-medium: #DADADA;
+    --background-colors-exstralight: #F3F3F3;
+ 
+    /* проверить */
+    --constextual-colors-error: #FD3419;
+    --constextual-colors-error: #FFFFFF; 
+    --constextual-colors-error: #E8E8E8;
+
+    --btn-color-primary-default: #2231AA;
+    --btn-color-primary-hover: #5360CD;
+    --btn-color-primary-disabled: #E8E8E8;
+    --btn-colorTextW: #FFFFFF;
+
+    --btn-color-secondary-default: #E8E8E8;
+    --btn-color-secondary-hover: #DADADA;
+    --btn-color-secondary-disabled: #E8E8E8;
+    --btn-colorTextS: #313037;
+
+    --btn-colorText-secondary2-default: #FD3419;
+    --btn-colorText-secondary2-hover: #FD3419;
+    --btn-colorText-secondary2-disabled: #8D8E97;
+
+    --btn-colorText: #DADADA;
+    --btn-colorTextD: #8D8E97;
+    
+
+
 }
 
 #app{
-    height: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    /* Привязываем фон всего сайта и цвет текста к нашим динамическим переменным */
+    background-color: var(--app-background);
+    color: var(--app-text);
+    /* Добавляем плавность, чтобы при клике цвета менялись красиво */
+    transition: background-color 0.3s ease, color 0.3s ease; }
+
+[data-theme="dark"] {
+  --app-background:  #313037;
+  --app-text:  #F3F3F3;
+  --background-colors-exstralight: #18181b;
+  --system-color-secondary: #f4f4f5; 
+}
+a {
+    color: inherit;
+    text-decoration: none;
 }

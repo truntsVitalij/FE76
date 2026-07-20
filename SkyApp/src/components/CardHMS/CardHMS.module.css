@@ -1,0 +1,131 @@
+.card.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.card__link.hero{
+text-decoration: none;
+color: inherit;
+display: block;
+}
+
+ .card__information.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+ }
+
+.card__image.hero {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.card__date.hero{
+    font-size: 16px;
+    color: #8D8E97;
+}
+
+.card__title.hero{
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 56px;
+    color: var(--app-text);
+}
+
+.card__text.hero {
+    font-size: 18px;
+    line-height: 32px;
+    color: var(--app-text);
+}
+
+.card.medium {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.card__link.medium {
+text-decoration: none;
+color: inherit;
+display: block;
+}
+
+.card_information.medium {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.card__image.medium {
+    width: 100%;
+    height: 246px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.card__date.medium {
+    font-size: 16px;
+    color: #8D8E97;
+}
+
+.card__title.medium {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 34px;
+    color: var(--app-text);
+}
+
+.card.small {
+    display: flex;  /*картинка не сверху, а справа. */
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #DADADA;
+}
+
+.card__link.small{
+text-decoration: none;
+color: inherit;
+display: block;
+}
+
+.card__content.small{
+    
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px
+
+}
+
+.card__information.small{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.card__image.small{
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card__date.small{
+    font-size: 14px;
+    color: #8D8E97;
+}
+
+.card__title.small{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    color: var(--app-text);
+}

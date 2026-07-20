@@ -1,13 +1,15 @@
-import { Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import "./App.css";
-import { MainLayout } from "./components/Layout";
+import { MainLayout } from "./components/Layouts/MainLayout";
+import { ImagePreview } from "./components/ImagePreview/ImagePreview";
 
 function App() {
   return (
     <div id="app">
       <MainLayout>
         <Outlet />
+        <ImagePreview/>
       </MainLayout>
     </div>
   );

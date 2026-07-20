@@ -8,7 +8,7 @@ interface IFooterProps {
 
 export const Footer: FC<IFooterProps>= ({className}) => {
     return (
-        <footer className={'${styles.footer} ${className}'}>
+        <footer className={`${styles.footer} ${className}`}>
             <span>
                 (c) CopyRights
             </span>

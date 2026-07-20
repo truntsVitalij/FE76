@@ -1,0 +1,28 @@
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    min-height: calc(100vh - 112px);
+   
+    padding: 72px 24px;
+    background: #F3F3F3;
+    transition: .3s;
+    gap: 32px;
+
+}
+.block{
+     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:end;
+    gap: 32px;
+}
+.btnContainer{
+    display: flex;
+    justify-content: space-between;
+}
+.btnRight{
+     display: flex;
+    justify-content: center;
+}

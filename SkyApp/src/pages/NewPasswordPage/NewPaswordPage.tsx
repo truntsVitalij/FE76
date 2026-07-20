@@ -1,10 +1,10 @@
 import React, { useState, type FC } from "react";
-import { AuthLayout } from "../../components/AuthLayout";
+import { AuthLayout } from "../../components/Layouts/AuthLayout";
 
 import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Button } from "../../shared/ui/Button";
 
 import styles from "./NewPaswordPage.module.css";
 import ResetPasswordNextPage from "../ResetPasswordNextPage";
@@ -18,7 +18,7 @@ const NewPasswordPage: FC = () => {
     e.preventDefault();
 
     localStorage.setItem("user", password); //временно
-    navigate("/sign-up", {state: {passwordChanged: true}});  //not shure ResetPasswordNextPage
+    navigate("/sign-up", { state: { passwordChanged: true } }); //not shure ResetPasswordNextPage
   };
 
   return (

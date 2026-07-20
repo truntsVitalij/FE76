@@ -1,0 +1,34 @@
+.tabs {
+  display: flex;
+  gap: 40px;
+  margin: 40px 0;
+  border-bottom: 1px solid var(--background-colors-medium);
+}
+
+.tab {
+  position: relative;
+  padding:  14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: .2s;
+}
+/* 
+.tab:hover {
+  color: var(--background-colors-gray);
+}
+
+.active {
+  color: var(--text-color);
+} */
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: var(--background-colors-gray);
+}
