@@ -5,12 +5,17 @@ import { Pagination } from '../../components/Pagination';
 import { useAppSelector } from '../../store';
 import { useDispatch } from 'react-redux';
 import { fetchBlogList, updateBlogList } from '../../store/actions/blogs/blogsActions';
+import { useNavigate } from 'react-router';
+import { useIsLogin } from '../../hooks/use-is-login';
 // import type { useLoaderData } from 'react-router';
 
 
 const POSTS_PER_PAGE = 6;
+const IS_LOGIN_KEY = 'isLogin';
 
 export const BlogList: FC = () => {
+    const navigate = useNavigate();
+    const isLogin = useIsLogin();
     // const [isLoading, setIsLoading] = useState(false);
     // const [error, setError] = useState<string | null>(null);
     // const [postList, setPostList] = useState<Array<Post>>([]); // useState<Post[]>([]);
@@ -58,7 +63,11 @@ export const BlogList: FC = () => {
 
     // // Когда я перехожу на страницу blogList, я хочу получить список постов из API
     useEffect(() => {
-        dispatch(fetchBlogList(10));
+        if (!isLogin) {
+            navigate('/sign-in');
+        } else {
+            dispatch(fetchBlogList(10));
+        }
     }, [])
 
 

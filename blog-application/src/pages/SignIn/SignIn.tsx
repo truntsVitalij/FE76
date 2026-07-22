@@ -15,6 +15,7 @@ const SignIn: FC = () => {
     const match = useMatch('/sign-in');
     console.log(match, 'match');
     const handleSignInClick = () => {
+        localStorage.setItem('isLogin', 'true')
         // проверяем credentionals
 
         // переключится на страницу blog
