@@ -1,0 +1,15 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #18841f;
+
+    .contentContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}

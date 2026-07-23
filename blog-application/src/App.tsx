@@ -11,6 +11,11 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'WITHDRAW_MONEY', payload: 100 });
+    fetch('https://priorbank.api.v1/balance', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      }
+    })
   }, []);
 
   return (

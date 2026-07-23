@@ -1,0 +1,16 @@
+.button {
+    padding: 14px 30px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+
+    &.secondary {
+        background-color: rgba(24, 24, 24, 0.8);
+        color: #fff;
+
+        &:hover {
+            background-color: rgba(24, 24, 24, 0.5);
+        }
+    }
+}
