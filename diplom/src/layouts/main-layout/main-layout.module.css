@@ -1,0 +1,25 @@
+.mainLayout {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #000;
+
+  .content {
+    flex: 1;
+
+    display: flex;
+    gap: 12px;
+
+    .main {
+      background-color: rgb(104, 104, 236);
+      flex: 1;
+
+      &.collapsed {
+        width: 0;
+        flex: unset;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.downloadAppSidebar {
+  width: 30px;
+  background-color: rgb(18, 18, 18);
+  color: white;
+
+  &:hover {
+    width: 50px;
+  }
+}

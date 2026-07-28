@@ -4,7 +4,6 @@ import { Router } from './router'
 import './reset.css'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Router />
-  </StrictMode>,
+  <Router />
+  ,
 )
