@@ -2,7 +2,7 @@ import type { FC, PropsWithChildren } from "react"
 import styles from './button.module.css'
 
 interface IButtonProps extends PropsWithChildren {
-    onClick: () => void;
+    onClick?: () => void;
     variant?: 'primary' | 'secondary' | 'icon';
 }
 

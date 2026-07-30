@@ -8,6 +8,8 @@ const Home: FC = () => {
     const token = useAccessToken();
 
     const loadUserData = async () => {
+        if (!token) return
+
         const response = await fetch('https://api.spotify.com/v1/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -18,8 +20,8 @@ const Home: FC = () => {
     }
 
     useEffect(() => {
-        loadUserData()
-    }, [])
+        void loadUserData()
+    }, [token])
 
     return (
         <MainLayout>

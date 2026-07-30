@@ -5,8 +5,6 @@ import { PanelLeftClose, Plus, Maximize2, Minimize2 } from 'lucide-react';
 import { useAccessToken } from '../../hooks/use-access-token';
 import { Button } from '../../shared/button';
 
-const LIBRARY_URIS = ['spotify:playlist', 'spotify:album', 'spotify:artist'];
-
 interface IUserLibrarySidebarProps {
     isExpanded?: boolean
     onResize: () => void
@@ -16,6 +14,7 @@ export const UserLibrarySidebar: FC<IUserLibrarySidebarProps> = ({ isExpanded = 
     const token = useAccessToken();
 
     const loadLibraryContent = async () => {
+        if (!token) return
 
         const response = await fetch('https://api.spotify.com/v1/me/playlists', {
             headers: {
@@ -31,8 +30,8 @@ export const UserLibrarySidebar: FC<IUserLibrarySidebarProps> = ({ isExpanded = 
     }
 
     useEffect(() => {
-        loadLibraryContent();
-    }, [])
+        void loadLibraryContent();
+    }, [token])
 
     return (
         <div className={`${styles.userLibrarySidebar} ${isExpanded ? styles.expanded : ''}`}>
