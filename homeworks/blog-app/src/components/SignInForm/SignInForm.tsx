@@ -1,38 +1,47 @@
-import { type FC, useState } from 'react';
-import Input from '../Input';
-import styles from './SignInForm.module.css';
+import { type FC, useState, type SubmitEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../store";
+import { login } from "../../store/actions";
+import Input from "../../shared/ui/Input";
+import Button from "../../shared/ui/Button";
+import FormContainer from "../../shared/ui/FormContainer";
+import styles from "./SignInForm.module.css";
+import { isValidEmail, isValidPassword } from "../../shared/utils/validation";
 
-interface ISignInFormProps {
-  onSuccess: () => void;
-}
+const SignInForm: FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-const SignInForm: FC<ISignInFormProps> = ({ onSuccess }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {},
+  );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
-      setErrors({ email: 'Enter a valid email address.' });
+    if (!isValidEmail(email)) {
+      setErrors({ email: "Enter a valid email address." });
       return;
     }
-    if (password.length < 6) {
-      setErrors({ password: 'Password must be at least 6 characters.' });
+    if (!isValidPassword(password)) {
+      setErrors({ password: "Password must be at least 6 characters." });
       return;
     }
 
     setErrors({});
-    localStorage.setItem('isLoggedIn', 'true');
-    onSuccess();
+
+    const name = email.split("@")[0];
+    dispatch(login({ email, name }));
+
+    setTimeout(() => {
+      navigate("/success", { replace: true });
+    }, 0);
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.fields}>
+    <FormContainer onSubmit={handleSubmit}>
       <Input
         id="email"
         label="Email"
@@ -42,6 +51,7 @@ const SignInForm: FC<ISignInFormProps> = ({ onSuccess }) => {
         required
         placeholder="example@mail.com"
         error={errors.email}
+        className={styles.formInput}
       />
       <Input
         id="password"
@@ -52,12 +62,12 @@ const SignInForm: FC<ISignInFormProps> = ({ onSuccess }) => {
         required
         placeholder="Min. 6 characters"
         error={errors.password}
+        className={styles.formInput}
       />
-      <button type="submit" className={styles.submitBtn}>
+      <Button type="submit" variant="primary" className={styles.submitBtn}>
         Sign In
-      </button>
-      </div>
-    </form>
+      </Button>
+    </FormContainer>
   );
 };
 

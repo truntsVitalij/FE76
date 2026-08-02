@@ -1,22 +1,17 @@
-import React from 'react';
+import { type FC } from 'react';
+import { Link } from 'react-router-dom';
+import Title from '../../shared/ui/Title';
 import SignUpForm from '../../components/SignUpForm';
 import styles from './SignUp.module.css';
-import Title from '../../components/Title/Title';
-interface SignUpProps {
-  onSignUpSuccess: () => void;
-  onSwitchToSignIn: () => void;
-}
 
-const SignUp: React.FC<SignUpProps> = ({ onSignUpSuccess, onSwitchToSignIn }) => {
+const SignUp: FC = () => {
   return (
     <div className={styles.card}>
       <Title level={2} className={styles.title}>Sign Up</Title>
-      <SignUpForm onSuccess={onSignUpSuccess} />
+      <SignUpForm />
       <p className={styles.hint}>
         Already have an account?{' '}
-        <span className={styles.link} onClick={onSwitchToSignIn}>
-          Sign In
-        </span>
+        <Link to="/signin" className={styles.link}>Sign In</Link>
       </p>
     </div>
   );

@@ -1,3 +1,2 @@
-import SuccessLogin from "./SuccessLogin";
-
+import SuccessLogin from './SuccessLogin';
 export default SuccessLogin;

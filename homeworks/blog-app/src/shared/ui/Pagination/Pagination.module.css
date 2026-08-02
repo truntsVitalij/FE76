@@ -1,0 +1,37 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 8px; 
+}
+
+.pages {
+  display: flex;
+  gap: 8px;
+}
+
+.page,
+.arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+
+.page:hover:not(.active) {
+  color: var(--not-active);
+}
+
+.active {
+  font-weight: 700;
+  color: var(--active);
+}
+
+.arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

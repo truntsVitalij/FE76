@@ -1,0 +1,42 @@
+
+.backLink {
+  cursor: pointer;
+  color: var(--button-bg);
+  transition: color 0.2s;
+}
+.backLink:hover {
+  color: var(--hover-bg);
+  text-decoration: underline;
+}
+.separator {
+  color: var(--separator);
+  margin: 0 8px;
+}
+.currentBreadcrumb {
+  color: var(--text-secondary);
+}
+
+
+.notFound {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.title {
+  color: var(--text-primary);
+  text-transform: capitalize;
+  font-size: 36px;
+}
+
+.backBtn {
+  margin-top: 16px;
+  padding: 8px 20px;
+  background: var(--button-bg);
+  color: var(--text-btn-color);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.backBtn:hover {
+  background: var(--hover-bg);
+}
