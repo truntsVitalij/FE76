@@ -1,20 +1,18 @@
-import React from 'react';
+import { getInitials } from '../../utils/getInitials';
 import styles from './UserAvatar.module.css';
 
 interface UserAvatarProps {
-  showName?: boolean;
   name?: string;
+  showName?: boolean;
 }
 
-export const UserAvatar: React.FC<UserAvatarProps> = ({ showName = false, name = '' }) => {
-  const initials = name 
-    ? name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase() 
-    : '??';
+export const UserAvatar: React.FC<UserAvatarProps> = ({ name, showName = false }) => {
+  const initials = getInitials(name);
 
   return (
-    <div className={styles.userContainer}>
-      <div className={styles.avatar}>{initials}</div>
-      {showName && <span className={styles.userName}>{name}</span>}
+    <div className={styles.avatar}>
+      <div className={styles.avatarCircle}>{initials}</div>
+      {showName && <span className={styles.avatarName}>{name}</span>}
     </div>
   );
 };

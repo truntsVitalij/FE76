@@ -1,4 +1,5 @@
 import { Sun, Moon } from 'lucide-react';
+import { getInitials } from '../../utils/getInitials';
 import styles from './Sidebar.module.css';
 
 interface SidebarProps {
@@ -18,11 +19,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   count,
   onLogout
 }) => {
-  const initials = userName
-    ? userName.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase()
-    : userEmail
-      ? userEmail.substring(0, 2).toUpperCase()
-      : '??';
+  const initials = getInitials(userName, userEmail);
 
   return (
     <div className={`${styles.sidebarDropdown} ${isOpen ? styles.sidebarOpen : ''}`}>

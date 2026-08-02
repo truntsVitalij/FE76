@@ -1,21 +1,22 @@
-import { type FC, useState, useMemo, useEffect } from 'react';
+import { type FC, useState, useMemo, useRef, useEffect } from 'react';
 import { Tabs } from '../../components/Tabs';
 import { Grid } from '../../components/Grid';
 import { Pagination } from '../../components/Pagination';
 import type { TabType } from './types';
 import { ALL_POSTS } from '../../data/posts';
 import styles from './Blog.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import type { Post } from '../../pages/blog/types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { 
+import {
   addToFavorite,
   removeToFavorite,
   setPosts,
   toggleLike,
-  toggleDislike,   
-  restoreState,    
+  toggleDislike,
+  restoreState,
 } from '../../state/actions/postAction';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 interface BlogProps {
   userEmail?: string;
@@ -25,62 +26,46 @@ interface BlogProps {
 
 const POSTS_PER_PAGE = 7;
 
-export const Blog: FC<BlogProps> = ({
-  searchQuery
-}) => {
-  const [isRestored, setIsRestored] = useState(false);
+export const Blog: FC<BlogProps> = ({ searchQuery }) => {
   const [activeTab, setActiveTab] = useState<TabType>('All');
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
-  const favorites = useSelector((state: any) => state.post.favorites);
-  const posts = useSelector((state: any) => state.post.posts);
-  const likedIds = useSelector((state: any) => state.post.likedIds);
-  const dislikedIds = useSelector((state: any) => state.post.dislikedIds);
+  const restoredRef = useRef(false);
+
+  const favorites = useAppSelector((state) => state.post.favorites);
+  const posts = useAppSelector((state) => state.post.posts);
+  const likedIds = useAppSelector((state) => state.post.likedIds);
+  const dislikedIds = useAppSelector((state) => state.post.dislikedIds);
+
   const [savedFavorites, setSavedFavorites] = useLocalStorage<Post[]>('favorites', []);
   const [savedLikedIds, setSavedLikedIds] = useLocalStorage<number[]>('likedIds', []);
   const [savedDislikedIds, setSavedDislikedIds] = useLocalStorage<number[]>('dislikedIds', []);
 
-  // useEffect(() => {
-  //   if (savedFavorites.length > 0 && favorites.length === 0) {
-  //     savedFavorites.forEach((post: Post) => dispatch(addToFavorite(post)));
-  //   }
-  //   if (savedLikedIds.length > 0 && likedIds.length === 0) {
-  //     savedLikedIds.forEach((id: number) => dispatch(toggleLike(id)));
-  //   }
-  //   if (savedDislikedIds.length > 0 && dislikedIds.length === 0) {
-  //     savedDislikedIds.forEach((id: number) => dispatch(toggleDislike(id)));
-  //   }
-  // }, []); // 
-
   useEffect(() => {
-    if (!isRestored) {
+    if (!restoredRef.current) {
       dispatch(restoreState(savedFavorites, savedLikedIds, savedDislikedIds));
       dispatch(setPosts(ALL_POSTS));
-      setIsRestored(true);
+      restoredRef.current = true;
     }
-  }, [isRestored]);
+  }, [dispatch, savedFavorites, savedLikedIds, savedDislikedIds]);
 
   useEffect(() => {
-    if (isRestored) {
+    if (restoredRef.current) {
       setSavedFavorites(favorites);
     }
-  }, [favorites, isRestored]);
+  }, [favorites, setSavedFavorites]);
 
   useEffect(() => {
-    if (isRestored) {
+    if (restoredRef.current) {
       setSavedLikedIds(likedIds);
     }
-  }, [likedIds, isRestored]);
+  }, [likedIds, setSavedLikedIds]);
 
   useEffect(() => {
-    if (isRestored) {
+    if (restoredRef.current) {
       setSavedDislikedIds(dislikedIds);
     }
-  }, [dislikedIds, isRestored]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeTab, searchQuery]);
+  }, [dislikedIds, setSavedDislikedIds]);
 
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
@@ -95,9 +80,9 @@ export const Blog: FC<BlogProps> = ({
     if (isFavorite) {
       dispatch(removeToFavorite(postId));
     } else {
-      dispatch(addToFavorite(post))
+      dispatch(addToFavorite(post));
     }
-  }
+  };
 
   const handleToggleLike = (postId: number) => {
     dispatch(toggleLike(postId));
@@ -109,7 +94,7 @@ export const Blog: FC<BlogProps> = ({
 
   const displayedPosts = useMemo(() => {
     let filtered = posts;
-    
+
     if (activeTab === 'All') {
       filtered = posts;
     } else if (activeTab === 'My favorite') {
@@ -117,13 +102,13 @@ export const Blog: FC<BlogProps> = ({
     } else if (activeTab === 'Popular') {
       filtered = posts.slice(-3);
     }
-    
+
     if (searchQuery) {
       filtered = filtered.filter((post: Post) =>
         post.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-    
+
     return filtered;
   }, [activeTab, searchQuery, favorites, posts]);
 
@@ -144,8 +129,8 @@ export const Blog: FC<BlogProps> = ({
   return (
     <div className={styles.container}>
       <Tabs activeTab={activeTab} onTabChange={handleTabChange} />
-      <Grid 
-        posts={paginatedPosts} 
+      <Grid
+        posts={paginatedPosts}
         favoriteIds={favoriteIdsFromRedux}
         likedIds={likedIds}
         dislikedIds={dislikedIds}
@@ -154,7 +139,7 @@ export const Blog: FC<BlogProps> = ({
         onToggleDislike={handleToggleDislike}
       />
       {totalPages > 1 && (
-        <Pagination 
+        <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
           onPageChange={handlePageChange}

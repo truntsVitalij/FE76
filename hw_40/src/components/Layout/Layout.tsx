@@ -5,8 +5,7 @@ import { UserAvatar } from '../UserAvatar/UserAvatar';
 import { Sidebar } from '../Sidebar';
 import styles from './Layout.module.css';
 
-interface LayoutProps {
-  children: React.ReactNode;
+interface LayoutProps extends React.PropsWithChildren {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   postCount: number;
