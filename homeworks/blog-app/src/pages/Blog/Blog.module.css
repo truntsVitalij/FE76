@@ -5,9 +5,12 @@
 .title {
   font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 24px;
 }
 
 
 
+.paginationWrapper {
+  margin-top: 32px;
+}

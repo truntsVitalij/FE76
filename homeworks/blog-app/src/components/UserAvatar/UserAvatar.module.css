@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatarBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var( --badge-bg); 
+  color: var(--badge-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-light);
+}

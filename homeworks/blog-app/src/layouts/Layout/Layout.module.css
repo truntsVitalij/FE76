@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  padding-top: 70px;
+}
+
+.main {
+  flex: 1;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.footerLeft,
+.footerRight {
+  font-size: 12px;
+  color: var(--text-secondary);
+}

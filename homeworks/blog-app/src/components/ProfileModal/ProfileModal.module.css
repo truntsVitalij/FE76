@@ -1,0 +1,33 @@
+.container {
+  background: var(--bg-secondary);
+  padding: 32px;
+  border-radius: 8px;
+  min-width: 600px;
+  min-height: 300px;
+  width: 100%;
+  box-shadow: var(--shadow-color);
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+.info {
+  margin-bottom: 24px;
+}
+
+.info p {
+  font-size: 24px;
+  color: var(--text-primary);
+  margin: 40px 0;
+}
+
+.okBtn {
+  display: block;
+  min-width: 300px;
+  margin: 0 auto;
+}

@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 60px;
+
+  background-color: var(--brand-color);
+
+  color: var(--header-text-color);
+}

@@ -1,0 +1,42 @@
+
+
+.primary {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.primary:hover {
+  background-color: var(--hover-bg);
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--button-bg);
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+.secondary:hover {
+  background-color: var(--hover-bg);
+}
+
+.icon {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+
+}
+
+.text {
+  background: none;
+  border: none;
+  padding: 0;
+
+
+}
+

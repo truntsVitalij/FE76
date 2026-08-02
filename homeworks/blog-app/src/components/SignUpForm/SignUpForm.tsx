@@ -1,31 +1,41 @@
-import { type FC, useState } from 'react';
-import Input from '../Input';
+import { type FC, useState, type SubmitEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../store';
+import { login } from '../../store/actions';
+import Input from '../../shared/ui/Input';
+import Button from '../../shared/ui/Button';
+import FormContainer from '../../shared/ui/FormContainer';
 import styles from './SignUpForm.module.css';
+import { isValidEmail, isValidPassword, isEmptyString } from '../../shared/utils/validation';
 
-interface ISignUpFormProps {
-  onSuccess: () => void;
-}
+const SignUpForm: FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-const SignUpForm: FC<ISignUpFormProps> = ({ onSuccess }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState<{
+    name?: string;
     email?: string;
     password?: string;
     confirmPassword?: string;
   }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
+    if (isEmptyString(name)) {
+      setErrors({ name: 'Name is required.' });
+      return;
+    }
+   
+    if (!isValidEmail(email)) {
       setErrors({ email: 'Enter a valid email address.' });
       return;
     }
-    if (password.length < 6) {
+    if (!isValidPassword(password)) {
       setErrors({ password: 'Password must be at least 6 characters.' });
       return;
     }
@@ -35,14 +45,29 @@ const SignUpForm: FC<ISignUpFormProps> = ({ onSuccess }) => {
     }
 
     setErrors({});
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userEmail', email);
-    onSuccess();
+
+  
+    dispatch(login({ email, name }));
+   
+   setTimeout(() => {
+  navigate('/success', { replace: true });
+}, 0);
+
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.fields}>
+    <FormContainer onSubmit={handleSubmit}>
+      <Input
+        id="name"
+        label="Name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+        placeholder="Your name"
+        error={errors.name}
+        className={styles.formInput}
+      />
       <Input
         id="email"
         label="Email"
@@ -52,6 +77,7 @@ const SignUpForm: FC<ISignUpFormProps> = ({ onSuccess }) => {
         required
         placeholder="example@mail.com"
         error={errors.email}
+        className={styles.formInput}
       />
       <Input
         id="password"
@@ -62,6 +88,7 @@ const SignUpForm: FC<ISignUpFormProps> = ({ onSuccess }) => {
         required
         placeholder="Min. 6 characters"
         error={errors.password}
+        className={styles.formInput}
       />
       <Input
         id="confirmPassword"
@@ -72,12 +99,12 @@ const SignUpForm: FC<ISignUpFormProps> = ({ onSuccess }) => {
         required
         placeholder="Confirm password"
         error={errors.confirmPassword}
+        className={styles.formInput}
       />
-      <button type="submit" className={styles.submitBtn}>
+      <Button type="submit" variant="primary" className={styles.submitBtn}>
         Sign Up
-      </button>
-      </div>
-    </form>
+      </Button>
+    </FormContainer>
   );
 };
 

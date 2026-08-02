@@ -1,3 +1,4 @@
+import { type FC } from 'react';
 import PostCard from '../PostCard';
 import type { IPost } from '../../types/post';
 import styles from './PostGrid.module.css';
@@ -6,17 +7,22 @@ interface IPostGridProps {
   posts: IPost[];
 }
 
-const PostGrid: React.FC<IPostGridProps> = ({ posts }) => {
+const PostGrid: FC<IPostGridProps> = ({ posts }) => {
+  const firstPost = posts[0];
+  const nextFour = posts.slice(1, 5);
+  const rest = posts.slice(5);
+
   return (
     <div className={styles.mainLayout}>
       <div className={styles.leftColumn}>
-        {posts.map((post, index) => index < 5 && (
-          <PostCard key={post.id} post={post} variant={index === 0 ? 'large' : 'medium'} />
+        {firstPost && <PostCard post={firstPost} variant="large" />}
+        {nextFour.map((post) => (
+          <PostCard key={post.id} post={post} variant="medium" />
         ))}
       </div>
-      {posts.length > 5 && (
+      {rest.length > 0 && (
         <div className={styles.rightColumn}>
-          {posts.map((post, index) => index >= 5 && (
+          {rest.map((post) => (
             <PostCard key={post.id} post={post} variant="small" />
           ))}
         </div>

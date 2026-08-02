@@ -1,0 +1,8 @@
+.form {
+  background-color: var(--card-bg);
+  padding: 32px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-color);
+  width: 100%;
+  max-width: 400px;
+}

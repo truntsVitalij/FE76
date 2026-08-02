@@ -1,0 +1,26 @@
+.input {
+  width: 100%;
+  transition: border-color 0.2s;
+  background-color: var(--input-bg);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputError {
+  border-color: var(--border-color);
+  color: var(--input-error);
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.errorText {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+}
