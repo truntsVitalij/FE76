@@ -1,0 +1,64 @@
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: auto;
+  height: calc(100vh - 200px);
+
+  .playlist {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    text-decoration: none;
+
+    &.activePlaylist {
+      .emptyImg {
+        background-color: rgb(128, 128, 227);
+      }
+
+      .content {
+        .title {
+          color: rgb(99, 171, 183);
+        }
+      }
+    }
+
+    .img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .emptyImg {
+      background-color: rgb(166, 166, 166);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .title {
+        font-size: 20px;
+        font-weight: 500;
+        color: rgb(166, 166, 166);
+      }
+
+      .description {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .descriptionLabel {
+        font-size: 14px;
+        color: white;
+      }
+
+      .ownerName {
+        color: rgb(114, 114, 114);
+        font-size: 16px;
+      }
+    }
+  }
+}
