@@ -1,38 +1,29 @@
-import { useAccessToken } from "@/hooks/use-access-token";
-import { useEffect, useState, type FC } from "react";
+import { useLoadCurrentPlaylist } from "@/api/use-load-current-playlist";
+import { type FC } from "react";
 import { useParams } from "react-router";
 
 const Playlist: FC = () => {
-  const token = useAccessToken();
   const { id } = useParams();
+  const currentUser = useCurrentUser();
 
-  const [currentPlaylist, setCurrentPlaylist] = useState(null);
-
-  const loadCurrentPlaylist = async (id: string) => {
-    if (!token) return;
-
-    const response: Response = await fetch(
-      `https://api.spotify.com/v1/playlists/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
-    const data = await response.json();
-    setCurrentPlaylist(data);
-    console.log(data);
-  };
-
-  useEffect(() => {
-    loadCurrentPlaylist(id);
-  }, [id]);
 
   return (
     <div>
-      <h2>{currentPlaylist?.name}</h2> ID: {id}
+      <HEader />
+      <AdvWidget />
+      <Chat />
+      <GameList currentUser={currentUser}/>
+      <Footer />
     </div>
   );
 };
 
 export default Playlist;
+
+// SRP Single Responsibility Principle - принцип единственной ответственности 
+// (у модуля должна быть только одна причина для изменений)
+// антипаттерн - "god" модуль - миллион ответственностей, огромный файл, много зависимостей
+
+// 1. Отрисовка страницы
+// 2. вытягивает ID из URL
+// 3. Вытягивает плейлисты

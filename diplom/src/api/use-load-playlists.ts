@@ -1,5 +1,6 @@
 import { useAccessToken } from "@/hooks/use-access-token";
 import { useState } from "react";
+import { makeRequest } from "./make-request";
 
 export interface IPlaylistResponse {
   collaborative: boolean;
@@ -42,18 +43,11 @@ export const useLoadPlaylist = () => {
     if (!token) return;
 
     setLoading(true);
-    const response: Response = await fetch(
+    const response: ILoadPlaylistsResponse = await makeRequest(
       "https://api.spotify.com/v1/me/playlists",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
     );
-    const data: ILoadPlaylistsResponse = await response.json();
     setLoading(false);
-    setPlaylists(data.items);
-    console.log(data);
+    setPlaylists(response.items);
   };
 
   return {
