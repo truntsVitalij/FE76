@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import type { IPlaylistResponse } from "@/api/use-load-playlists";
-import { getLibraryPlaylists } from "./get-library-playlists";
+import { getLibraryPlaylistsInfo } from "./get-library-playlists";
 
 const createPlaylist = (
   overrides: Partial<IPlaylistResponse> = {},
@@ -25,13 +25,13 @@ const createPlaylist = (
 
 describe("getLibraryPlaylists", () => {
   it("returns an empty array for an empty input list", () => {
-    expect(getLibraryPlaylists([])).toEqual([]);
+    expect(getLibraryPlaylistsInfo([])).toEqual([]);
   });
 
   it("maps playlist fields to library view model", () => {
     const playlist = createPlaylist();
 
-    expect(getLibraryPlaylists([playlist])).toEqual([
+    expect(getLibraryPlaylistsInfo([playlist])).toEqual([
       {
         id: "playlist-1",
         name: "My Playlist",
@@ -57,7 +57,7 @@ describe("getLibraryPlaylists", () => {
       }),
     ];
 
-    expect(getLibraryPlaylists(playlists)).toEqual([
+    expect(getLibraryPlaylistsInfo(playlists)).toEqual([
       {
         id: "playlist-1",
         name: "First",
@@ -76,7 +76,7 @@ describe("getLibraryPlaylists", () => {
   it("returns undefined mainImage when images is null", () => {
     const playlist = createPlaylist({ images: null });
 
-    expect(getLibraryPlaylists([playlist])).toEqual([
+    expect(getLibraryPlaylistsInfo([playlist])).toEqual([
       {
         id: "playlist-1",
         name: "My Playlist",

@@ -1,6 +1,7 @@
 import { useLoadCurrentPlaylist } from "@/api/use-load-current-playlist";
 import { type FC } from "react";
 import { useParams } from "react-router";
+import { AdvWidget } from '@/widgets/adv-widget'
 
 const Playlist: FC = () => {
   const { id } = useParams();
