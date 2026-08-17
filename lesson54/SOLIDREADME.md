@@ -1343,9 +1343,14 @@ export function usePlaylistApi() {
 
 // component
 function Playlists() {
-  const api = usePlaylistApi();
-  const { playlists } = useMyPlaylists(api);
-  return <ul>{playlists.map(/* ... */)}</ul>;
+  const {loadPlaylist, list, isLoading, isError} = useLoadPlaylist();
+
+  useEffect(() => {
+    loadPlaylist();
+  }
+
+  if (isLoading) return <div>Loading...</div>
+  return <ul>{list.map(/* ... */)}</ul>;
 }
 ```
 
