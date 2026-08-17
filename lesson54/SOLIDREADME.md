@@ -1341,6 +1341,24 @@ export function usePlaylistApi() {
   return useContext(PlaylistApiContext);
 }
 
+const usePlaylistApi = () => {
+  return {
+     loadPlaylist: makeRequest('/me/playlist'),
+     createPlaylist: makeRequest('/me/playlist', {method: "PUT"})
+  }
+}
+
+// useLoadPlaylist
+const useLoadPlaylist = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const api = usePlaylistApi();
+
+  const loadPlaylist = async () => {
+    const response = await api.loadPlaylist()
+    ....
+  }
+}
+
 // component
 function Playlists() {
   const {loadPlaylist, list, isLoading, isError} = useLoadPlaylist();
