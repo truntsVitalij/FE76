@@ -42,7 +42,6 @@ export const UserLibrarySidebar: FC<IUserLibrarySidebarProps> = ({
     });
 
     const newPlaylist = await response.json();
-    console.log(newPlaylist);
   };
 
   useEffect(() => {
